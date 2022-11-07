@@ -1,0 +1,62 @@
+body {
+            background: rgb(125, 123, 255);
+            font: normal 20pt Arial;
+        }
+
+        header {
+            color: white;
+            text-decoration: blueviolet;
+            position: relative;
+            text-align: center;
+            text-justify: auto;
+        }
+
+        section {
+            background: white;
+            width: 70%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 25px;
+            position: relative;
+            top: 70px;
+            box-shadow: rgba(0, 0, 0, 0.397) 20px 20px 15px;
+            margin:auto
+        }
+
+        div {
+            text-align: center;
+            padding: 10px;
+            padding-bottom: 20px;
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+        }
+
+        input.coisos {
+            
+            font: normal 15pt Arial;
+            width: 400px;
+            height: 30px;
+           
+        }
+
+        input.cx{
+            width: 100%
+        }
+		
+		div.final
+        {
+		font-family: 	Comic Sans Ms;
+		font-size:      30px;
+        }
+
+        p.Eu
+        {
+            position: relative;
+            top: 100px;
+        }
+        
+        
+        
