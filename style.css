@@ -45,9 +45,10 @@ body {
         input.cx{
             width: 100%;
             font-size: 75%;
+            margin-bottom: 25px;
             
         }
-		
+
 		div.final
         {
 		font-family: 	Comic Sans Ms;
