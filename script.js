@@ -9,12 +9,18 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var webhook = "https://ptb.discord.com/api/webhooks/802012648223932416/0EzcblvVPBdoxIgQ6lxaK08U1vIp17nnp75XeHuwhzpTssH4_rzh5UDgx5UiCR982G46"
  
         let txt;
+        let pause = false;
+        cx.innerText = "oe"
+        cx.innerHTML = "oeh"
+        
  
         cx.addEventListener('keypress',  async (verif) => {
             if (verif.key == "Enter") {
 
                 dv.innerHTML = ""
+                pause = true
                 txt = cx.value.split("")
+                pause = false
                 sans.play();
 
 
@@ -22,7 +28,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                     enviarmsg(cx.value)
                 }
 
-                for(let i = 0; i < txt.length; i++){
+                for(let i = 0; i < txt.length && pause == false; i++){
                     dv.innerHTML += `${txt[i]}`
                         if(txt[i] !== " ") {
                         sans.pause();
