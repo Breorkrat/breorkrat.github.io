@@ -9,7 +9,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
         var box = document.getElementById('hook')
-        var webhook = "https://ptb.discord.com/api/webhooks/1087037935494381669/yf3ApM0HN4CBWi1jKoSGPBCL30TO9tm0pSvfy4Rc-zzHbj9F1XBfjkVQdka49Lz8qrnI"
+        var webhook = "https://ptb.discord.com/api/webhooks/1087039502935138354/ZZf1wNA8KoP4O_Lf-sx6vPGdJcwBXSIrxVNJra31bfnP0FRvBVuTlL-YVvByKEDm0a63"
  
         let txt;
  
@@ -43,13 +43,28 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 var msg = {
                     "content": cx.value
                 }
-                fetch(webhook + "?wait=true",
+                fetch(webhook, {
+                    body: JSON.stringify(msg),
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    method: "POST",
+                  })
+                    .then(function (res) {
+                      console.log(res);
+                    })
+                    .catch(function (res) {
+                      console.log(res);
+                    });
+
+                
+                /*fetch(webhook + "?wait=true",
                 {
                     "method": "POST",
                     "headers": { "content-type": "application/json" },
                     "body": JSON.stringify(msg)
                 })
-                .then(a => a.json()).then(console.log)
+                .then(a => a.json()).then(console.log)*/
             }
         }
 
