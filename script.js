@@ -57,8 +57,8 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let looping = false;
         async function tocarMúsica()
         {
-            //Coloca o limite de tempo em 3
-            tempo > 3 ? tempo == 3 : tempo += 3
+            //Coloca o limite de tempo em 2s
+            tempo > 2 ? tempo == 2 : tempo += 2
 
             //Só começa a tocar caso a música esteja pausada
             if(song.paused == true) song.play()
@@ -67,12 +67,12 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             //apenas o incrementa
             if (looping) return;
 
-            //Sinaliza que um looping começou, decrementa em tempo a cada 0.2 segundos
+            //Sinaliza que um looping começou, decrementa em tempo a cada 0.1 segundos
             looping = true;
             while (tempo > 0)
             {
                 tempo--;
-                await sleep(200)
+                await sleep(100)
             }
             looping = false;
             song.pause()
