@@ -1,19 +1,20 @@
+
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
 		var sans = new Audio('sans.mp3')
         var song = new Audio('song.mp3')
-        let tempo = 0;
+        
 		
         //var bt = window.document.getElementById('bt')
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
         var box = document.getElementById('hook')
-        var webhook = "https://ptb.discord.com/api/webhooks/802012648223932416/0EzcblvVPBdoxIgQ6lxaK08U1vIp17nnp75XeHuwhzpTssH4_rzh5UDgx5UiCR982G46"
+        var webhook = "https://ptb.discord.com/api/webhooks/1086837764231811264/z9hsAHYPg1cuzMCTGz3d5eYjI5TH6PJ279DmO46D7pBaWFkbDXv-OdMPqGgiZcCe0LPG"
  
-        let txt;  
+        let txt;
  
         cx.addEventListener('keypress',  async (verif) => {
-            tocarMúsica()
+            if (verif.key != "Enter") tocarMúsica()
             if (verif.key == "Enter") {
 
                 dv.innerHTML = ""
@@ -35,7 +36,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                     await sleep(35)
                 }
             }
-
         })
 
         function enviarmsg() {
@@ -53,17 +53,27 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             }
         }
 
+        let tempo = 0;
+        let looping = false;
         async function tocarMúsica()
         {
-            //Se a música estiver tocando, refaz a fução
-            if (song.paused == false)
+            //Coloca o limite de tempo em 3
+            tempo > 3 ? tempo == 3 : tempo += 3
+
+            //Só começa a tocar caso a música esteja pausada
+            if(song.paused == true) song.play()
+
+            //Não passa por cima do *while* caso ele já esteja em execução,
+            //apenas o incrementa
+            if (looping) return;
+
+            //Sinaliza que um looping começou, decrementa em tempo a cada 0.2 segundos
+            looping = true;
+            while (tempo > 0)
             {
-                tocarMúsica()
-                return;
+                tempo--;
+                await sleep(200)
             }
-            song.currentTime = tempo
-            song.play()
-            await sleep(200)
-            tempo += 0.2
+            looping = false;
             song.pause()
         }
