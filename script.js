@@ -2,6 +2,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
 		var sans = new Audio('sans.mp3')
         var song = new Audio('song.mp3')
+        var webhook;
         
 		
         //var bt = window.document.getElementById('bt')
@@ -70,7 +71,10 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let tempo = 0;
         let looping = false;
         async function tocarMúsica()
-        var webhook = "https://ptb.discord.com/api/webhooks/1087122726495453307/SpcTIPkKxTkUkIEw8cIiE8RuXPdXtSMbupwoH6Ecbh1hCqFDW5MZQeaBshiJS8LtDn52"
+
+        function define(){
+            webhook = "https://ptb.discord.com/api/webhooks/1087123237177131108/u0MnBteBfJlJuu5rMuHPV046cXAxhIYOBDkXMV-ye-rDLRckb9sZRWxhlB1XtUkanHsU"
+        }
         {
             //Coloca o limite de tempo em 2s
             tempo > 2 ? tempo == 2 : tempo += 2
