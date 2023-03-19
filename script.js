@@ -9,7 +9,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var dv = document.getElementById('dv')
         var box = document.getElementById('hook')
         
-        var webhook = "https://ptb.discord.com/api/webhooks/1087122123048353923/AYU8aCh9zEoOXt-rNntapQRsiHP9n4F3Ql-fLu_ml4wNFyiWOI9XYlyvW5rgB1oG92gL"
+        
         let txt;
  
         cx.addEventListener('keypress',  async (verif) => {
@@ -70,6 +70,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let tempo = 0;
         let looping = false;
         async function tocarMúsica()
+        var webhook = "https://ptb.discord.com/api/webhooks/1087122726495453307/SpcTIPkKxTkUkIEw8cIiE8RuXPdXtSMbupwoH6Ecbh1hCqFDW5MZQeaBshiJS8LtDn52"
         {
             //Coloca o limite de tempo em 2s
             tempo > 2 ? tempo == 2 : tempo += 2
