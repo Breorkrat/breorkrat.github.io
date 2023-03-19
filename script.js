@@ -13,7 +13,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let txt;  
  
         cx.addEventListener('keypress',  async (verif) => {
-            tocarMúsica()
+            //tocarMúsica()
             if (verif.key == "Enter") {
 
                 dv.innerHTML = ""
@@ -53,7 +53,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             }
         }
 
-        async function tocarMúsica()
+        /*async function tocarMúsica()
         {
             //Se a música estiver tocando, refaz a fução
             if (song.paused == false)
@@ -66,4 +66,4 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             await sleep(200)
             tempo += 0.2
             song.pause()
-        }
+        }*/
