@@ -1,3 +1,4 @@
+const config = require("./config.json");
 
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
@@ -9,7 +10,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
         var box = document.getElementById('hook')
-        var webhook = "https://ptb.discord.com/api/webhooks/1087044691259834459/f73BZPKhcLrfnyfF7ddUkpoZ9QmwLeEIkvJK9kN9jplUu_-R8pgBM4zLuFio0hDLlF3G"
  
         let txt;
  
@@ -43,7 +43,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 var msg = {
                     "content": cx.value
                 }
-                fetch(webhook, {
+                fetch(config.webhook, {
                     body: JSON.stringify(msg),
                     headers: {
                       "Content-Type": "application/json",
