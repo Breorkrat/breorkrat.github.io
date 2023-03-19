@@ -42,7 +42,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 var msg = {
                     "content": cx.value
                 }
-                fetch(config.webhook, {
+                fetch(webhook, {
                     body: JSON.stringify(msg),
                     headers: {
                       "Content-Type": "application/json",
