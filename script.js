@@ -1,5 +1,3 @@
-const config = require("./config.json");
-
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
 		var sans = new Audio('sans.mp3')
@@ -10,6 +8,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
         var box = document.getElementById('hook')
+        let webhook = "https://ptb.discord.com/api/webhooks/1087062124347539507/CLGTOb9L_1tSWzirWrT8UGLMdOmZ72bZVR5DW9J5pqn4IU6Y6DpL0Ti_hiGHpGHb43ri"
  
         let txt;
  
