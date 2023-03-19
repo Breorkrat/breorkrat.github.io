@@ -55,11 +55,17 @@ body {
 		font-size:      30px;
         }
 
-        p.Eu
+        .footer
+        {
+            padding-right: 25px;
+            position: relative;
+            top: 75px;
+        }
+        /*p.Eu
         {
             position: relative;
             top: 100px;
-        }
+        }*/
         
         
         

@@ -1,6 +1,8 @@
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
 		var sans = new Audio('sans.mp3')
+        var song = new Audio('song.mp3')
+        let tempo = 0;
 		
         //var bt = window.document.getElementById('bt')
         var cx = document.getElementById('cx')
@@ -8,27 +10,21 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var box = document.getElementById('hook')
         var webhook = "https://ptb.discord.com/api/webhooks/802012648223932416/0EzcblvVPBdoxIgQ6lxaK08U1vIp17nnp75XeHuwhzpTssH4_rzh5UDgx5UiCR982G46"
  
-        let txt;
-        let pause = false;
-        cx.innerText = "oe"
-        cx.innerHTML = "oeh"
-        
+        let txt;  
  
         cx.addEventListener('keypress',  async (verif) => {
+            tocarMúsica()
             if (verif.key == "Enter") {
 
                 dv.innerHTML = ""
-                pause = true
                 txt = cx.value.split("")
-                pause = false
                 sans.play();
-
 
                 if(box.checked == true){
                     enviarmsg(cx.value)
                 }
 
-                for(let i = 0; i < txt.length && pause == false; i++){
+                for(let i = 0; i < txt.length; i++){
                     dv.innerHTML += `${txt[i]}`
                         if(txt[i] !== " ") {
                         sans.pause();
@@ -55,4 +51,19 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 })
                 .then(a => a.json()).then(console.log)
             }
+        }
+
+        async function tocarMúsica()
+        {
+            //Se a música estiver tocando, refaz a fução
+            if (song.paused == false)
+            {
+                tocarMúsica()
+                return;
+            }
+            song.currentTime = tempo
+            song.play()
+            await sleep(200)
+            tempo += 0.2
+            song.pause()
         }
