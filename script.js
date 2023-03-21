@@ -12,7 +12,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             er = new Audio('er.mp3');;
             }
         if(!song){
-            song = new Audio('song.mp3');;
+            song = new Audio('song.mp3');
             }
         });
         
