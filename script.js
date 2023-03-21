@@ -1,22 +1,11 @@
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
-		//var er = new Audio('./assets/audio/er.mp3')
-        //var song = new Audio('assets/audio/song.mp3')
+		var er = new Audio('./assets/audio/er.mp3')
+        var song = new Audio('assets/audio/song.mp3')
         let select = new Audio('assets/audio/select.mp3')
         let click = new Audio('assets/audio/click.mp3')
         let sans = document.getElementById('sans');
 
-        var er, song;
-        $("#startAudio").on("click", function(e){
-        if(!er){
-            er = new Audio('er.mp3');;
-            }
-        if(!song){
-            song = new Audio('song.mp3');
-            }
-        });
-        
-		
         //var bt = window.document.getElementById('bt')
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
