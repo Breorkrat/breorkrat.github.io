@@ -1,12 +1,16 @@
 @font-face{
     font-family: 'Determination';
-    src: url('./determination.ttf');
+    src: url('./assets/fontes/determination.ttf');
+}
+@font-face {
+    font-family: 'Comic Sans';
+    src: url('./assets/fontes/comicsans.ttf');
 }
 
 body {
             background: rgb(0, 0, 0);
             font: normal 20pt Arial;
-            background-image: url("./Background.png");           
+            background-image: url("./assets/imagens/Background.png");           
             background-position: center;
             background-repeat: no-repeat;
         }
@@ -19,14 +23,25 @@ header {
             text-justify: auto;
         }
 
+.sans{
+    position: absolute;
+    margin-left: 50%;
+    left: -76px;
+    top: 28px;
+    
+}
+
 section {
-            background: rgba(25, 0, 250, 0);
-            width: 520px;
-            height: 100px;
+            background: rgba(0, 255, 76, 0);
+            width: 566px;
+            height: 132px;
             margin: auto;
             position: relative;
-            top: 183px;
-            left: 10px;
+            top: 184px;
+            left: 1px;
+            outline-style:solid;
+            outline-color: rgb(255, 255, 255);
+            outline-width: 5px;
             box-shadow: rgba(0, 0, 0, 0.397) 20px 20px 15px;
             
         }
@@ -57,9 +72,11 @@ input.coisos {
             font-family: 'Determination';
             word-wrap:break-word;
             color: white;
-            background-color: rgb(0, 0, 0);
-            width: 99%;
-            height: 95%;
+            background-color: rgba(255, 0, 0, 0);
+            width: 90%;
+            height: 80%;
+            margin-left: 35px;
+            margin-top: 15px;
             font-size: 100%;
             margin-bottom: 25px;
             border-color: transparent;
@@ -70,18 +87,18 @@ input.coisos {
 .final {
         position:relative;
         color: white;
-		font-family: 	Comic Sans Ms;
+		font-family: 	'Comic Sans';
 		font-size:      30px;
         top: 100px;
         }
 
 .footer {
-        background-image: url("./act.png");
+        background-image: url("./assets/imagens/act.png");
         position: absolute;
         margin-left: 180px;
         left: 50%;
         width: 90px;
-        top: 354px;
+        top: 370px;
         height: 13px;  
         }
 
@@ -91,11 +108,5 @@ input.coisos {
             top: -14px;
             left: 5px;
         }
-        /*p.Eu
-        {
-            position: relative;
-            top: 100px;
-        }*/
-        
         
         

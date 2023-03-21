@@ -1,9 +1,10 @@
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
-		var sans = new Audio('sans.mp3')
-        var song = new Audio('song.mp3')
-        let select = new Audio('select.mp3')
-        let click = new Audio('click.mp3')
+		var er = new Audio('./assets/audio/er.mp3')
+        var song = new Audio('assets/audio/song.mp3')
+        let select = new Audio('assets/audio/select.mp3')
+        let click = new Audio('assets/audio/click.mp3')
+        let sans = document.getElementById('sans');
         
 		
         //var bt = window.document.getElementById('bt')
@@ -21,12 +22,12 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         }
 
         function menter(){
-            footer.style.backgroundImage = "url('./act2.png')"
+            footer.style.backgroundImage = "url('./assets/imagens/act2.png')"
             select.play()
         }
 
         function mout(){
-            footer.style.backgroundImage = "url('./act.png')"
+            footer.style.backgroundImage = "url('./assets/imagens/act.png')"
         }
 
 
@@ -40,7 +41,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
                 dv.innerHTML = ""
                 txt = cx.value.split("")
-                sans.play();
+                er.play();
 
                 /*if(box.checked == true){
                     enviarmsg(cx.value)
@@ -49,9 +50,9 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 for(let i = 0; i < txt.length; i++){
                     dv.innerHTML += `${txt[i]}`
                         if(txt[i] !== " ") {
-                        sans.pause();
-                        sans.currentTime = 0.001;
-                        sans.play();
+                        er.pause();
+                        er.currentTime = 0.001;
+                        er.play();
                         }
                     
                     await sleep(35)
@@ -97,7 +98,10 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             tempo > 2 ? tempo == 2 : tempo += 2
 
             //Só começa a tocar caso a música esteja pausada
-            if(song.paused == true) song.play()
+            if(song.paused == true) {
+                song.play()
+                sans.src = "./assets/imagens/passinho.webp"
+            }
 
             //Não passa por cima do *while* caso ele já esteja em execução,
             //apenas o incrementa
@@ -112,4 +116,5 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             }
             looping = false;
             song.pause()
+            sans.src = "./assets/imagens/sans.png"
         }
