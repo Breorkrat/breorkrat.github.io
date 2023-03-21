@@ -1,9 +1,17 @@
+@font-face{
+    font-family: 'Determination';
+    src: url('./determination.ttf');
+}
+
 body {
-            background: rgb(125, 123, 255);
+            background: rgb(0, 0, 0);
             font: normal 20pt Arial;
+            background-image: url("./Background.png");           
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        header {
+header {
             color: white;
             text-decoration: blueviolet;
             position: relative;
@@ -11,55 +19,77 @@ body {
             text-justify: auto;
         }
 
-        section {
-            background: white;
-            width: 70%;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 25px;
+section {
+            background: rgba(25, 0, 250, 0);
+            width: 520px;
+            height: 100px;
+            margin: auto;
             position: relative;
-            top: 70px;
+            top: 183px;
+            left: 10px;
             box-shadow: rgba(0, 0, 0, 0.397) 20px 20px 15px;
-            margin:auto
+            
         }
 
-        div {
+div {
             text-align: center;
             padding: 10px;
             padding-bottom: 20px;
         }
 
-        footer {
+footer {
+            padding-top: 210px;
+            padding-left: 300px;
             color: white;
             text-align: center;
         }
 
-        input.coisos {
-            
+input.coisos {            
             font: normal 15pt Arial;
             width: 400px;
             height: 30px;
            
         }
 
-        input.cx{
-            width: 100%;
-            font-size: 75%;
+.cx {
+            resize: none;
+            overflow: hidden;
+            font-family: 'Determination';
+            word-wrap:break-word;
+            color: white;
+            background-color: rgb(0, 0, 0);
+            width: 99%;
+            height: 95%;
+            font-size: 100%;
             margin-bottom: 25px;
-            
+            border-color: transparent;
+            scrollbar-highlight-color: transparent;
+            outline: none;
         }
 
-		div.final
-        {
+.final {
+        position:relative;
+        color: white;
 		font-family: 	Comic Sans Ms;
 		font-size:      30px;
+        top: 100px;
         }
 
-        .footer
-        {
-            padding-right: 25px;
+.footer {
+        background-image: url("./act.png");
+        position: absolute;
+        margin-left: 180px;
+        left: 50%;
+        width: 90px;
+        top: 354px;
+        height: 13px;  
+        }
+
+.logo {
+            pointer-events: none;
             position: relative;
-            top: 75px;
+            top: -14px;
+            left: 5px;
         }
         /*p.Eu
         {
