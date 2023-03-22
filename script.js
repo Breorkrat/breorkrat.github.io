@@ -11,6 +11,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var dv = document.getElementById('dv')
 
         addEventListener("resize", screenSize);
+        screenSize()
         footer.addEventListener('mouseover', menter)
         footer.addEventListener('mouseout', mout)
         footer.addEventListener('click', mclick)
