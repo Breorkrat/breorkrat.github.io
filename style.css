@@ -107,5 +107,15 @@ input.coisos {
             top: -14px;
             left: 5px;
         }
+    
+.res {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(18, 0, 66, 0.664);
+    
+}
         
         

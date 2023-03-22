@@ -5,10 +5,15 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let select = new Audio('assets/audio/select.mp3')
         let click = new Audio('assets/audio/click.mp3')
         let sans = document.getElementById('sans');
-
         //var bt = window.document.getElementById('bt')
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
+
+        console.log(window.innerWidth)
+        if(window.innerWidth < 577)
+        {
+            dv.innerHTML = "É recomendado que você rotacione o dispositivo"
+        }
         
         var footer = window.document.getElementById('footer')
         footer.addEventListener('mouseover', menter)
