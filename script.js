@@ -5,17 +5,12 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let select = new Audio('assets/audio/select.mp3')
         let click = new Audio('assets/audio/click.mp3')
         let sans = document.getElementById('sans');
+        var footer = window.document.getElementById('footer')
         //var bt = window.document.getElementById('bt')
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
 
-        console.log(window.innerWidth)
-        if(window.innerWidth < 577)
-        {
-            dv.innerHTML = "É recomendado que você rotacione o dispositivo"
-        }
-        
-        var footer = window.document.getElementById('footer')
+        addEventListener("resize", screenSize);
         footer.addEventListener('mouseover', menter)
         footer.addEventListener('mouseout', mout)
         footer.addEventListener('click', mclick)
@@ -121,6 +116,15 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             looping = false;
             song.pause()
             sans.src = "./assets/imagens/sans.png"
+        }
+        function screenSize()
+        {
+            if(window.innerWidth < 577) {
+            dv.innerHTML = "É recomendado que você rotacione o dispositivo"
+            }
+            else {
+                dv.innerHTML = "Yeah"
+            }
         }
 
         function mclick(){
