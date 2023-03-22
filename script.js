@@ -15,27 +15,15 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         footer.addEventListener('mouseout', mout)
         footer.addEventListener('click', mclick)
 
-        function mclick(){
-            window.open("https://discord.gg/XXNQW7zdfc")
-            click.play();
-        }
-
-        function menter(){
-            footer.style.backgroundImage = "url('./assets/imagens/act2.png')"
-            select.play()
-        }
-
-        function mout(){
-            footer.style.backgroundImage = "url('./assets/imagens/act.png')"
-        }
-
-
-        //var box = document.getElementById('hook')
         var webhook = "https://ptb.discord.com/api/webhooks/1087122123048353923/AYU8aCh9zEoOXt-rNntapQRsiHP9n4F3Ql-fLu_ml4wNFyiWOI9XYlyvW5rgB1oG92gL"
         let txt;
  
-        cx.addEventListener('keypress',  async (verif) => {
-            if (verif.key != "Enter") tocarMúsica()
+        cx.addEventListener('keydown',  async (verif) => {
+
+            //Isso é um RegEx, onde ele procura por letras de A-Z em maiúsculo e minúsculo, e caracteres de "! à @" em unicode, o que inclui os números
+            if (/^[A-Za-z!-@À-Üá-ü]*$/.test(verif.key) == false) return;
+
+            if (verif.key != "Enter" && verif.location == 0) tocarMúsica()
             if (verif.key == "Enter") {
 
                 dv.innerHTML = ""
@@ -77,15 +65,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                     .catch(function (res) {
                       console.log(res);
                     });
-
-                
-                /*fetch(webhook + "?wait=true",
-                {
-                    "method": "POST",
-                    "headers": { "content-type": "application/json" },
-                    "body": JSON.stringify(msg)
-                })
-                .then(a => a.json()).then(console.log)*/
             }
         }
 
@@ -116,4 +95,18 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             looping = false;
             song.pause()
             sans.src = "./assets/imagens/sans.png"
+        }
+
+        function mclick(){
+            window.open("https://discord.gg/XXNQW7zdfc")
+            click.play();
+        }
+
+        function menter(){
+            footer.style.backgroundImage = "url('./assets/imagens/act2.png')"
+            select.play()
+        }
+
+        function mout(){
+            footer.style.backgroundImage = "url('./assets/imagens/act.png')"
         }
