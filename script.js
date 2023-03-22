@@ -15,35 +15,28 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         footer.addEventListener('mouseout', mout)
         footer.addEventListener('click', mclick)
 
-        var webhook = "https://ptb.discord.com/api/webhooks/1087122123048353923/AYU8aCh9zEoOXt-rNntapQRsiHP9n4F3Ql-fLu_ml4wNFyiWOI9XYlyvW5rgB1oG92gL"
+        //var webhook = "https://ptb.discord.com/api/webhooks/1087122123048353923/AYU8aCh9zEoOXt-rNntapQRsiHP9n4F3Ql-fLu_ml4wNFyiWOI9XYlyvW5rgB1oG92gL"
         let txt;
- 
+        let para, falando = false;
+
         cx.addEventListener('keydown',  async (verif) => {
 
             //Isso é um RegEx, onde ele procura por letras de A-Z em maiúsculo e minúsculo, e caracteres de "! à @" em unicode, o que inclui os números
             if (/^[A-Za-z!-@À-Üá-ü]*$/.test(verif.key) == false) return;
+            if (verif.key != "Enter") tocarMúsica()
 
-            if (verif.key != "Enter" && verif.location == 0) tocarMúsica()
+            //Cancela a fala caso ele já esteja falando
             if (verif.key == "Enter") {
-
-                dv.innerHTML = ""
-                txt = cx.value.split("")
-                er.play();
-
+                if (falando == true) 
+                {
+                    para = true;
+                    console.log("Para")
+                    return;
+                }             
+                falar(txt)
                 /*if(box.checked == true){
                     enviarmsg(cx.value)
-                }*/
-
-                for(let i = 0; i < txt.length; i++){
-                    dv.innerHTML += `${txt[i]}`
-                        if(txt[i] !== " ") {
-                        er.pause();
-                        er.currentTime = 0.001;
-                        er.play();
-                        }
-                    
-                    await sleep(35)
-                }
+                }*/  
             }
         })
 
@@ -70,6 +63,35 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
         let tempo = 0;
         let looping = false;
+
+        async function falar(txt)
+        {
+            //Limpa o campo de fala
+            dv.innerHTML = ""
+            txt = cx.value.split("")
+            er.play();
+            falando = true;
+            for (let i = 0; i < txt.length; i++)
+            {
+                //Cancela caso receba um sinal para parar
+                if (para == true)
+                {
+                    //Reinicia a parte da fala
+                    falando = false
+                    para = false
+                    falar(txt)
+                    return;
+                }
+                //Escreve letra por letra tocando o áudio
+                dv.innerHTML += `${txt[i]}`
+                if (txt[i] !== " ") {
+                    er.currentTime = 0.001;
+                    er.play();
+                }
+                await sleep(35)
+            }
+            falando = false;
+        }
         async function tocarMúsica()
         {
             //Coloca o limite de tempo em 2s
