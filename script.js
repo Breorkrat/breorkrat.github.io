@@ -30,7 +30,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 if (falando == true) 
                 {
                     para = true;
-                    console.log("Para")
                     return;
                 }             
                 falar(txt)
