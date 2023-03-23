@@ -32,8 +32,9 @@ header {
 }
 
 section {
-            background: rgba(0, 255, 76, 0);
-            width: 566px;
+            
+            background: rgba(0, 255, 76, 0);     
+            max-width: 566px;
             height: 132px;
             margin: auto;
             position: relative;
@@ -117,5 +118,13 @@ input.coisos {
     background-color: rgba(18, 0, 66, 0.664);
     
 }
-        
+ 
+.asterisco {
+    top: 14px;
+    left: 14px;
+    position: absolute;
+    color: white;
+    font-family: 'Determination';
+    font-size: 130%;
+}
         
