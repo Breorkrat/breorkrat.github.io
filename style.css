@@ -1,115 +1,115 @@
-@font-face{
+@font-face {
     font-family: 'Determination';
     src: url('./assets/fontes/determination.ttf');
 }
+
 @font-face {
     font-family: 'Comic Sans';
     src: url('./assets/fontes/comicsans.ttf');
 }
 
 body {
-            background: rgb(0, 0, 0);
-            font: normal 20pt Arial;
-            background-image: url("./assets/imagens/Background.png");           
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+    background: rgb(0, 0, 0);
+    font: normal 20pt Arial;
+    background-image: url("./assets/imagens/Background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 header {
-            color: white;
-            text-decoration: blueviolet;
-            position: relative;
-            text-align: center;
-            text-justify: auto;
-        }
+    color: white;
+    text-decoration: blueviolet;
+    position: relative;
+    text-align: center;
+    text-justify: auto;
+}
 
-.sans{
+.sans {
     position: absolute;
     margin-left: 50%;
     left: -76px;
     top: 28px;
-    
+    user-select: none;
 }
 
 section {
-            
-            background: rgba(0, 255, 76, 0);     
-            max-width: 566px;
-            height: 132px;
-            margin: auto;
-            position: relative;
-            top: 184px;
-            left: 1px;
-            outline-style:solid;
-            outline-color: rgb(255, 255, 255);
-            outline-width: 5px;
-            
-        }
+    user-select: none;
+    background: rgba(0, 255, 76, 0);
+    max-width: 566px;
+    height: 132px;
+    margin: auto;
+    position: relative;
+    top: 184px;
+    left: 1px;
+    outline-style: solid;
+    outline-color: rgb(255, 255, 255);
+    outline-width: 5px;
+}
 
 div {
-            text-align: center;
-            padding: 10px;
-            padding-bottom: 20px;
-        }
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 20px;
+}
 
 footer {
-            padding-top: 210px;
-            padding-left: 300px;
-            color: white;
-            text-align: center;
-        }
+    padding-top: 210px;
+    padding-left: 300px;
+    color: white;
+    text-align: center;
+}
 
-input.coisos {            
-            font: normal 15pt Arial;
-            width: 400px;
-            height: 30px;
-           
-        }
+input.coisos {
+    font: normal 15pt Arial;
+    width: 400px;
+    height: 30px;
+
+}
 
 .cx {
-            resize: none;
-            overflow: hidden;
-            font-family: 'Determination';
-            word-wrap:break-word;
-            color: white;
-            background-color: rgba(0, 0, 0, 0);
-            width: 90%;
-            height: 80%;
-            margin-left: 35px;
-            margin-top: 15px;
-            font-size: 100%;
-            margin-bottom: 25px;
-            border-color: transparent;
-            scrollbar-highlight-color: transparent;
-            outline: none;
-        }
+    resize: none;
+    overflow: hidden;
+    font-family: 'Determination';
+    word-wrap: break-word;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    width: 90%;
+    height: 80%;
+    margin-left: 35px;
+    margin-top: 15px;
+    font-size: 100%;
+    margin-bottom: 25px;
+    border-color: transparent;
+    scrollbar-highlight-color: transparent;
+    outline: none;
+}
 
 .final {
-        position:relative;
-        color: white;
-		font-family: 	'Comic Sans';
-		font-size:      30px;
-        top: 100px;
-        
-        }
+    position: relative;
+    color: white;
+    font-family: 'Comic Sans';
+    font-size: 30px;
+    top: 100px;
+}
 
 .footer {
-        background-image: url("./assets/imagens/act.png");
-        position: absolute;
-        margin-left: 180px;
-        left: 50%;
-        width: 90px;
-        top: 370px;
-        height: 13px;  
-        }
+    background-image: url("./assets/imagens/act.png");
+    position: absolute;
+    margin-left: 180px;
+    left: 50%;
+    width: 90px;
+    top: 370px;
+    height: 13px;
+}
 
 .logo {
-            pointer-events: none;
-            position: relative;
-            top: -14px;
-            left: 5px;
-        }
-    
+    pointer-events: none;
+    position: relative;
+    top: -14px;
+    left: 5px;
+    user-select: none;
+}
+
 .res {
     position: fixed;
     height: 100%;
@@ -117,9 +117,9 @@ input.coisos {
     top: 0px;
     left: 0px;
     background-color: rgba(18, 0, 66, 0.664);
-    
+
 }
- 
+
 .asterisco {
     top: 14px;
     left: 14px;
@@ -127,5 +127,5 @@ input.coisos {
     color: white;
     font-family: 'Determination';
     font-size: 130%;
+    user-select: none;
 }
-        
