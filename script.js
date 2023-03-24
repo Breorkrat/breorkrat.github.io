@@ -121,6 +121,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         }
         function screenSize()
         {
+            if (falando) return;
             if(window.innerWidth < 577) {
             dv.innerHTML = "É recomendado que você rotacione o dispositivo"
             }
