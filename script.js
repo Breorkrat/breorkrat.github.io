@@ -4,11 +4,14 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var song = new Audio('assets/audio/song.mp3')
         let select = new Audio('assets/audio/select.mp3')
         let click = new Audio('assets/audio/click.mp3')
+
         let sans = document.getElementById('sans');
         var footer = window.document.getElementById('footer')
-        //var bt = window.document.getElementById('bt')
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
+        
+        let txt;
+        let para, falando = false;
 
         addEventListener("resize", screenSize);
         screenSize()
@@ -17,8 +20,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         footer.addEventListener('click', mclick)
 
         //var webhook = "https://ptb.discord.com/api/webhooks/1087122123048353923/AYU8aCh9zEoOXt-rNntapQRsiHP9n4F3Ql-fLu_ml4wNFyiWOI9XYlyvW5rgB1oG92gL"
-        let txt;
-        let para, falando = false;
+        
 
         cx.addEventListener('keydown',  async (verif) => {
 
