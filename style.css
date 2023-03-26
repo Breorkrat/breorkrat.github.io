@@ -95,8 +95,8 @@ input.coisos {
 .footer {
     background-image: url("./assets/imagens/act.png");
     position: absolute;
-    margin-left: 180px;
-    left: 50%;
+    left: 180px;
+    margin-left: 50%;
     width: 90px;
     top: 370px;
     height: 13px;
