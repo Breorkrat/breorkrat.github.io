@@ -25,8 +25,8 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         cx.addEventListener('keydown',  async (verif) => {
 
             //Isso é um RegEx, onde ele procura por letras de A-Z em maiúsculo e minúsculo, e caracteres de "! à @" em unicode, o que inclui os números
-            //Comentar pq ele ainda tá pegando teclas especiais if (/^[A-Z-a-z!-@À-Üá-ü]*$/.test(verif.key) == false) return
-            if (verif.key == "Shift" || verif.key == "Control") return;
+            //Comentar pq ele ainda tá pegando teclas especiais 
+            if (/^[A-Z-a-z!-@À-Üá-ü]*$/.test(verif.key) == false || verif.key == "Shift" || verif.key == "Control") return;
             if (verif.key != "Enter") tocarMúsica()
 
             //Cancela a fala caso ele já esteja falando
