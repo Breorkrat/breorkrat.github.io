@@ -110,7 +110,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             if(song.paused == true) {
                 if (spawn == "1") 
                 {
-                    console.log("Yeah")
                     defaultd.currentTime = 0
                     defaultd.play()
                     loopMúsica(defaultd)
@@ -128,7 +127,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             //Sinaliza que um looping começou, decrementa em tempo a cada 0.1 segundos
             looping = true;
             while (tempo > 0) {
-                console.log(tempo)
                 tempo--;
                 await sleep(100)
             }
