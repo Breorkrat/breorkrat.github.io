@@ -25,6 +25,7 @@ header {
 }
 
 .sans {
+    max-width: 182px;
     position: absolute;
     margin-left: 50%;
     left: -76px;

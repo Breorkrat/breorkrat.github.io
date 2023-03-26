@@ -4,6 +4,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var song = new Audio('assets/audio/song.mp3')
         let select = new Audio('assets/audio/select.mp3')
         let click = new Audio('assets/audio/click.mp3')
+        let defaultd = new Audio('assets/audio/default.mp3')
 
         let sans = document.getElementById('sans');
         var footer = window.document.getElementById('footer')
@@ -95,32 +96,47 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             }
             falando = false;
         }
+
+        var x;
         async function tocarMúsica()
         {
             //Coloca o limite de tempo em 2s
-            tempo > 2 ? tempo == 2 : tempo += 2
+            tempo >= 5 ? tempo == 5 : tempo += 3
 
             //Só começa a tocar caso a música esteja pausada
-            if(song.paused == true) {
-                song.play()
-                sans.src = "./assets/imagens/passinho.webp"
-            }
-
-            //Não passa por cima do *while* caso ele já esteja em execução,
-            //apenas o incrementa
             if (looping) return;
 
+            spawn = Math.ceil(Math.random()*10)
+            if(song.paused == true) {
+                if (spawn == "1") 
+                {
+                    console.log("Yeah")
+                    defaultd.currentTime = 0
+                    defaultd.play()
+                    loopMúsica(defaultd)
+                    sans.src = "./assets/imagens/passinho2.webp"
+                    return;
+                }
+                song.play()
+                loopMúsica(song)
+                sans.src = "./assets/imagens/passinho.webp"
+            }
+        }
+
+        async function loopMúsica(x)
+        {
             //Sinaliza que um looping começou, decrementa em tempo a cada 0.1 segundos
             looping = true;
-            while (tempo > 0)
-            {
+            while (tempo > 0) {
+                console.log(tempo)
                 tempo--;
                 await sleep(100)
             }
             looping = false;
-            song.pause()
+            x.pause()
             sans.src = "./assets/imagens/sans.png"
         }
+
         function screenSize()
         {
             if (falando) return;
