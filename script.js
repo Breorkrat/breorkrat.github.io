@@ -5,6 +5,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let select = new Audio('assets/audio/select.mp3')
         let click = new Audio('assets/audio/click.mp3')
         let defaultd = new Audio('assets/audio/default.mp3')
+        var webhook = "https://ptb.discord.com/api/webhooks/1087124132262584321/VrDk9We_By6iE_1Ibu-Xj5YhKQQ1won-honNRJvVHiwY3iwTYvNLjD5y5rGk63ZvDtMA"
 
         let sans = document.getElementById('sans');
         var footer = window.document.getElementById('footer')
@@ -20,8 +21,8 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         footer.addEventListener('mouseout', mout)
         footer.addEventListener('click', mclick)
 
-        //var webhook = "https://ptb.discord.com/api/webhooks/1087122123048353923/AYU8aCh9zEoOXt-rNntapQRsiHP9n4F3Ql-fLu_ml4wNFyiWOI9XYlyvW5rgB1oG92gL"
         
+
 
         cx.addEventListener('keydown',  async (verif) => {
 
@@ -44,7 +45,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             }
         })
 
-        function enviarmsg() {
+        /*function enviarmsg() {
             if (cx.value.length <= 2000) {
                 var msg = {
                     "content": cx.value
@@ -63,7 +64,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                       console.log(res);
                     });
             }
-        }
+        }*/
 
         let tempo = 0;
         let looping = false;
