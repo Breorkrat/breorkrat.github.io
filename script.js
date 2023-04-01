@@ -1,3 +1,15 @@
+/* cato
+　　　　 　  　 ＿＿
+　　　 　   ／＞　　フ
+　　　 　　 | 　_　 _|
+　 　　 　／` ミ＿xノ
+　　 　 /　　　 　 |
+　　　 /　 ヽ　　 ﾉ
+　 　 │　　|　|　|
+　／￣|　　 |　|　|
+　| (￣ヽ＿_ヽ_)__)
+　二つ
+*/
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
 		var er = new Audio('./assets/audio/er.mp3')
