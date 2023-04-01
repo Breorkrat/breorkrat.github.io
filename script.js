@@ -1,5 +1,3 @@
-import webhook from './hook.json' assert {type: 'json'};
-
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
 		var er = new Audio('./assets/audio/er.mp3')
@@ -42,7 +40,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             }
         })
 
-        function enviarmsg() {
+        /*function enviarmsg() {
             if (cx.value.length <= 2000) {
                 var msg = {
                     "content": cx.value
@@ -61,7 +59,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                       console.log(res);
                     });
             }
-        }
+        }*/
 
         let tempo = 0;
         let looping = false;
