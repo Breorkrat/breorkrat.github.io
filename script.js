@@ -35,8 +35,8 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             "./assets/imagens/passinhoforte.webp",
             "./assets/audio/default.mp3",
             "./assets/audio/er.mp3"
-            )
-            
+            )  
+
         const errorSans = new Sans(
             "error",
             "./assets/imagens/error.png",
@@ -44,12 +44,14 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             "./assets/audio/errorlovania.mp3",
             "./assets/audio/er.mp3"
         )
-        let select = new Audio('assets/audio/select.mp3')
-        let click = new Audio('assets/audio/click.mp3')
-        let atual, padrão = sands;
 
+        let select = new Audio('./assets/audio/select.mp3')
+        let click = new Audio('./assets/audio/click.mp3')
+        let locked = new Audio('./assets/audio/locked.mp3')
+        let atual, padrão = sands;
         let sanses = document.getElementById('sans');
-        var footer = window.document.getElementById('footer')
+        var spare = document.getElementById('spare')
+        var act = document.getElementById('act')
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
         let code = [
@@ -69,13 +71,20 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         
         let txt;
         let para, falando = false;
-
-
+        let onTouchDevice = ('ontouchstart' in document.documentElement);
+        
         addEventListener("resize", screenSize);
         screenSize()
-        footer.addEventListener('mouseover', menter)
-        footer.addEventListener('mouseout', mout)
-        footer.addEventListener('click', mclick)
+
+        spare.addEventListener('click', () => {mclick('spare')})
+        spare.addEventListener('mouseover', () => {menter('spare')})
+        spare.addEventListener('mouseout', () => {mout('spare')})
+
+        act.addEventListener('click', () => {mclick('act')})
+        act.addEventListener('mouseover', () => {menter('act')})
+        act.addEventListener('mouseout', () => {mout('act')})
+        
+
 
         window.addEventListener('keydown', async (tecla) => {
             //Konami code
@@ -87,10 +96,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
             if(input.toString() == code.toString())
             {
-                if (padrão.nome == "sans") padrão = errorSans 
-                else if(padrão.nome == "error") padrão = sands
-                window.alert("What")
-                sanses.src = padrão.sprite
+                alternarError()
             }
         })
 
@@ -117,27 +123,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 }*/
             }
         })
-
-        /*function enviarmsg() {
-            if (cx.value.length <= 2000) {
-                var msg = {
-                    "content": cx.value
-                }
-                fetch(webhook.link, {
-                    body: JSON.stringify(msg),
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    method: "POST",
-                  })
-                    .then(function (res) {
-                      console.log(res);
-                    })
-                    .catch(function (res) {
-                      console.log(res);
-                    });
-            }
-        }*/
 
         let tempo = 0;
         let looping = false;
@@ -168,14 +153,12 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                         let pbr = Math.round(Math.random()*10 + 5)/10
                         clone.preservesPitch = false;
                         clone.playbackRate = pbr;
-                        
                         clone.play();
                     }
                 }else 
                 {
                     if (txt[i] !== " ") {
-                        const clone = voz.cloneNode()
-                        clone.play();
+                        voz.cloneNode().play();
                     }
                 }
                 
@@ -230,18 +213,55 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             }
         }
 
-        function mclick(){
-            window.open("https://discord.gg/XXNQW7zdfc")
-            click.play();
+        function alternarError(){
+            if (padrão.nome == "sans") padrão = errorSans 
+                else if(padrão.nome == "error") padrão = sands
+                window.alert("What")
+                sanses.src = padrão.sprite
         }
 
-        function menter(){
-            footer.style.backgroundImage = "url('./assets/imagens/act2.png')"
+        function mclick(x){
+            
+            if (x == 'spare')
+            {
+                click.play();
+                window.open("https://discord.gg/XXNQW7zdfc")
+            }
+            
+            if (x == 'act')
+            {
+                if (onTouchDevice)
+                {
+                    click.play();
+                    alternarError()
+                }
+                else 
+                {
+                    locked.cloneNode().play()
+                }
+            }
+            
+        }
+
+        function menter(x){
+            if (x == "spare"){
+                spare.style.backgroundImage = "url('./assets/imagens/spare2.png')"
+            }
+            if (x == "act")
+            {
+                act.style.backgroundImage = "url('./assets/imagens/act2.png')"
+            }
             select.play()
-            .catch(() => {})
         }
 
-        function mout(){
-            footer.style.backgroundImage = "url('./assets/imagens/act.png')"
+        function mout(x){
+            if (x == "spare"){
+                spare.style.backgroundImage = "url('./assets/imagens/spare.png')"
+            }
+            if (x == "act")
+            {
+                act.style.backgroundImage = "url('./assets/imagens/act.png')"
+            }
+            
         }
 

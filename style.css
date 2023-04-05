@@ -93,8 +93,18 @@ input.coisos {
     top: 100px;
 }
 
-.footer {
+.act {
     background-image: url("./assets/imagens/act.png");
+    position: absolute;
+    width: 90px;
+    height: 13px;
+    margin-left: 50%;
+    top: 370px;
+    left: -134px;
+}
+
+.spare {
+    background-image: url("./assets/imagens/spare.png");
     position: absolute;
     left: 180px;
     margin-left: 50%;
