@@ -12,19 +12,64 @@
 */
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
-		var er = new Audio('./assets/audio/er.mp3')
-        var song = new Audio('assets/audio/song.mp3')
+        function Sans(nome, sprite, animação, song, fala)
+        {
+            this.nome = nome
+            this.sprite = sprite
+            this.animação = animação
+            this.song = new Audio(song)
+            this.fala = new Audio(fala)
+        }
+
+        const sands = new Sans(
+            "sans",
+            "./assets/imagens/sans.png",
+            "./assets/imagens/passinho.webp",
+            "./assets/audio/song.mp3",
+            "./assets/audio/er.mp3"
+            )
+
+        const fortenaite = new Sans(
+            "fortenaite",
+            null, //"./assets/imagens/sans.png",
+            "./assets/imagens/passinhoforte.webp",
+            "./assets/audio/default.mp3",
+            "./assets/audio/er.mp3"
+            )
+            
+        const errorSans = new Sans(
+            "error",
+            "./assets/imagens/error.png",
+            "./assets/imagens/errormandandoaquele.webp",
+            "./assets/audio/errorlovania.mp3",
+            "./assets/audio/er.mp3"
+        )
         let select = new Audio('assets/audio/select.mp3')
         let click = new Audio('assets/audio/click.mp3')
-        let defaultd = new Audio('assets/audio/default.mp3')
+        let atual, padrão = sands;
 
-        let sans = document.getElementById('sans');
+        let sanses = document.getElementById('sans');
         var footer = window.document.getElementById('footer')
         var cx = document.getElementById('cx')
         var dv = document.getElementById('dv')
+        let code = [
+            "ArrowUp",
+            "ArrowUp",
+            "ArrowDown",
+            "ArrowDown",
+            "ArrowLeft",
+            "ArrowRight",
+            "ArrowLeft",
+            "ArrowRight",
+            "b",
+            "a",
+            "Enter" 
+        ]
+        let input = []
         
         let txt;
         let para, falando = false;
+
 
         addEventListener("resize", screenSize);
         screenSize()
@@ -32,11 +77,32 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         footer.addEventListener('mouseout', mout)
         footer.addEventListener('click', mclick)
 
-        cx.addEventListener('keydown',  async (verif) => {
+        window.addEventListener('keydown', async (tecla) => {
+            //Konami code
+            input.push(tecla.key)
+            if(input.length > code.length)
+            {
+                input.shift()
+            }
 
+            if(input.toString() == code.toString())
+            {
+                if (padrão.nome == "sans") padrão = errorSans 
+                else if(padrão.nome == "error") padrão = sands
+                window.alert("What")
+                sanses.src = padrão.sprite
+            }
+        })
+
+        cx.addEventListener('keydown',  async (verif) => {
+            atual = padrão
+            if (Math.floor(Math.random()*10) == 0) 
+            {
+                atual = fortenaite
+            }
             //Isso é um RegEx, onde ele procura por letras de A-Z em maiúsculo e minúsculo, e caracteres de "! à @" em unicode, o que inclui os números
             if (/^[A-Z-a-z!-@À-Üá-ü]*$/.test(verif.key) == false || verif.key == "Shift" || verif.key == "Control") return;
-            if (verif.key != "Enter") tocarMúsica()
+            if (verif.key != "Enter") tocarMúsica(atual)
 
             //Cancela a fala caso ele já esteja falando
             if (verif.key == "Enter") {
@@ -44,8 +110,8 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 {
                     para = true;
                     return;
-                }             
-                falar(txt)
+                }            
+                falar(txt, atual)
                 /*if(box.checked == true){
                     enviarmsg(cx.value)
                 }*/
@@ -76,12 +142,11 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let tempo = 0;
         let looping = false;
 
-        async function falar(txt)
+        async function falar(txt, sans)
         {
             //Limpa o campo de fala
             dv.innerHTML = ""
             txt = cx.value.split("")
-            er.play();
             falando = true;
             for (let i = 0; i < txt.length; i++)
             {
@@ -89,24 +154,42 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 if (para == true)
                 {
                     //Reinicia a parte da fala
-                    falando = false
-                    para = false
-                    falar(txt)
+                    falando, para = false
+                    falar(txt, sans)
                     return;
                 }
                 //Escreve letra por letra tocando o áudio
                 dv.innerHTML += `${txt[i]}`
-                if (txt[i] !== " ") {
-                    er.currentTime = 0.001;
-                    er.play();
+                let voz = !sans.fala ? padrão.fala : sans.fala              
+                if(padrão.nome == "error")
+                {
+                    if (txt[i] !== " ") {
+                        let clone = voz.cloneNode()
+                        let pbr = Math.round(Math.random()*10 + 5)/10
+                        clone.preservesPitch = false;
+                        clone.playbackRate = pbr;
+                        
+                        clone.play();
+                    }
+                }else 
+                {
+                    if (txt[i] !== " ") {
+                        const clone = voz.cloneNode()
+                        clone.play();
+                    }
                 }
-                await sleep(35)
+                
+                //Não pausa nos espaços
+                if(txt[i] != " "){
+                await sleep(80)
+                }
             }
             falando = false;
         }
+        
 
         var x;
-        async function tocarMúsica()
+        async function tocarMúsica(sans)
         {
             //Coloca o limite de tempo em 2s
             tempo >= 5 ? tempo == 5 : tempo += 3
@@ -114,23 +197,16 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             //Só começa a tocar caso a música esteja pausada
             if (looping) return;
 
+            //Sansio do fortes
             spawn = Math.ceil(Math.random()*10)
-            if(song.paused == true) {
-                if (spawn == "1") 
-                {
-                    defaultd.currentTime = 0
-                    defaultd.play()
-                    loopMúsica(defaultd)
-                    sans.src = "./assets/imagens/passinho2.webp"
-                    return;
-                }
-                song.play()
-                loopMúsica(song)
-                sans.src = "./assets/imagens/passinho.webp"
+            if(sans.song.paused == true) {
+                sans.song.play()
+                loopMúsica(sans)
+                sanses.src = sans.animação
             }
         }
 
-        async function loopMúsica(x)
+        async function loopMúsica(sans)
         {
             //Sinaliza que um looping começou, decrementa em tempo a cada 0.1 segundos
             looping = true;
@@ -139,8 +215,8 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 await sleep(100)
             }
             looping = false;
-            x.pause()
-            sans.src = "./assets/imagens/sans.png"
+            sans.song.pause()
+            sanses.src = !sans.sprite ? padrão.sprite : sans.sprite
         }
 
         function screenSize()
@@ -162,8 +238,10 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         function menter(){
             footer.style.backgroundImage = "url('./assets/imagens/act2.png')"
             select.play()
+            .catch(() => {})
         }
 
         function mout(){
             footer.style.backgroundImage = "url('./assets/imagens/act.png')"
         }
+
