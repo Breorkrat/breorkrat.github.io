@@ -11,62 +11,45 @@
 body {
     background: rgb(0, 0, 0);
     font: normal 20pt Arial;
-    background-image: url("./assets/imagens/Background.png");
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 header {
     color: white;
     text-decoration: blueviolet;
-    position: relative;
     text-align: center;
     text-justify: auto;
 }
 
+.containersans {
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+} 
 .sans {
     max-width: 182px;
-    position: absolute;
-    margin-left: 50%;
-    left: -76px;
-    top: 28px;
+    top: 50px;
     user-select: none;
 }
 
-section {
+.section {
     user-select: none;
     background: rgba(0, 255, 76, 0);
     max-width: 566px;
     height: 132px;
     margin: auto;
-    position: relative;
-    top: 184px;
-    left: 1px;
+    margin-top: 40px;
     outline-style: solid;
     outline-color: rgb(255, 255, 255);
     outline-width: 5px;
 }
-
-div {
-    text-align: center;
-    padding: 10px;
-    padding-bottom: 20px;
-}
-
-footer {
-    padding-top: 210px;
-    padding-left: 300px;
+.asterisco {
+    position: absolute;
+    margin: 10px;
     color: white;
-    text-align: center;
+    font-family: 'Determination';
+    font-size: 130%;
+    user-select: none;
 }
-
-input.coisos {
-    font: normal 15pt Arial;
-    width: 400px;
-    height: 30px;
-
-}
-
 .cx {
     resize: none;
     overflow: hidden;
@@ -77,66 +60,53 @@ input.coisos {
     width: 90%;
     height: 80%;
     margin-left: 35px;
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 100%;
-    margin-bottom: 25px;
+    outline:none;
     border-color: transparent;
     scrollbar-highlight-color: transparent;
-    outline: none;
 }
-
-.final {
-    position: relative;
+.hp {
+    text-align: center;
+    margin-top: 30px;
+}
+.botões {
+    justify-content: center;
+    display: grid;
+    grid-template-rows: 42px;
+    grid-template-columns: repeat(4, 110px);
+    grid-gap: 45px;
+    margin-top: 20px;
+    height: 10px;
     color: white;
-    font-family: 'Comic Sans';
-    font-size: 30px;
-    top: 100px;
 }
-
+.fight {
+    background-image: url("./assets/imagens/fight.png");
+}
 .act {
     background-image: url("./assets/imagens/act.png");
-    position: absolute;
-    width: 90px;
-    height: 13px;
-    margin-left: 50%;
-    top: 370px;
-    left: -134px;
 }
-
+.item {
+    background-image: url("./assets/imagens/item.png");
+}
 .spare {
+    display: flex;
     background-image: url("./assets/imagens/spare.png");
-    position: absolute;
-    left: 180px;
-    margin-left: 50%;
-    width: 90px;
-    top: 370px;
-    height: 13px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
-
 .logo {
+    margin-left: 10px;
     pointer-events: none;
-    position: relative;
-    top: -14px;
-    left: 5px;
     user-select: none;
 }
-
-.res {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0px;
-    left: 0px;
-    background-color: rgba(18, 0, 66, 0.664);
-
-}
-
-.asterisco {
-    top: 14px;
-    left: 14px;
-    position: absolute;
+.final {
+    margin: auto;
+    width: 60%;
+    margin-top: 70px;
+    text-align: center;
     color: white;
-    font-family: 'Determination';
-    font-size: 130%;
-    user-select: none;
+    font-family: 'Comic Sans';
+    word-wrap: break-word;
 }

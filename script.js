@@ -12,8 +12,7 @@
 */
 function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
-        function Sans(nome, sprite, animação, song, fala)
-        {
+        function Sans(nome, sprite, animação, song, fala){
             this.nome = nome
             this.sprite = sprite
             this.animação = animação
@@ -26,7 +25,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             "./assets/imagens/sans.png",
             "./assets/imagens/passinho.webp",
             "./assets/audio/song.mp3",
-            "./assets/audio/er.mp3"
+            "./assets/audio/er.mp3",
             )
 
         const fortenaite = new Sans(
@@ -53,7 +52,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var spare = document.getElementById('spare')
         var act = document.getElementById('act')
         var cx = document.getElementById('cx')
-        var dv = document.getElementById('dv')
+        var final = document.getElementById('final')
         let code = [
             "ArrowUp",
             "ArrowUp",
@@ -83,8 +82,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         act.addEventListener('click', () => {mclick('act')})
         act.addEventListener('mouseover', () => {menter('act')})
         act.addEventListener('mouseout', () => {mout('act')})
-        
-
 
         window.addEventListener('keydown', async (tecla) => {
             //Konami code
@@ -130,7 +127,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         async function falar(txt, sans)
         {
             //Limpa o campo de fala
-            dv.innerHTML = ""
+            final.innerHTML = ""
             txt = cx.value.split("")
             falando = true;
             for (let i = 0; i < txt.length; i++)
@@ -144,7 +141,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                     return;
                 }
                 //Escreve letra por letra tocando o áudio
-                dv.innerHTML += `${txt[i]}`
+                final.innerHTML += `${txt[i]}`
                 let voz = !sans.fala ? padrão.fala : sans.fala              
                 if(padrão.nome == "error")
                 {
@@ -164,7 +161,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 
                 //Não pausa nos espaços
                 if(txt[i] != " "){
-                await sleep(80)
+                await sleep(60)
                 }
             }
             falando = false;
@@ -206,10 +203,10 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         {
             if (falando) return;
             if(window.innerWidth < 577) {
-            dv.innerHTML = "É recomendado que você rotacione o dispositivo"
+            final.innerHTML = "É recomendado que você rotacione o dispositivo"
             }
             else {
-                dv.innerHTML = "Yeah"
+                final.innerHTML = "Yeah"
             }
         }
 
