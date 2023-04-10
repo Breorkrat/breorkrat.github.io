@@ -76,13 +76,13 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         addEventListener("resize", screenSize);
         screenSize()
 
-        spare.addEventListener('click', () => {mclick('spare')})
-        spare.addEventListener('mouseover', () => {menter('spare')})
-        spare.addEventListener('mouseout', () => {mout('spare')})
-
-        act.addEventListener('click', () => {mclick('act')})
-        act.addEventListener('mouseover', () => {menter('act')})
-        act.addEventListener('mouseout', () => {mout('act')})
+        let botões = document.querySelectorAll(".botão")
+        for (let i = 0; i < botões.length; i++)
+        {
+            botões[i].addEventListener('click', () => {mclick(botões[i])})
+            botões[i].addEventListener('mouseover', () => {menter(botões[i])})
+            botões[i].addEventListener('mouseout', () => {mout(botões[i])})
+        }
 
         window.addEventListener('keydown', async (tecla) => {
             //Konami code
@@ -155,11 +155,11 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                     }
                 }else 
                 {
+                    //Não fala nos espaços
                     if (txt[i] !== " ") {
                         voz.cloneNode().play();
                     }
                 }
-                
                 //Não pausa nos espaços
                 if(txt[i] != " "){
                 await sleep(60)
@@ -167,17 +167,12 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             }
             falando = false;
         }
-        
 
         var x;
         async function tocarMúsica(sans)
         {
-            //Coloca o limite de tempo em 2s
             tempo >= 5 ? tempo == 5 : tempo += 3
-
-            //Só começa a tocar caso a música esteja pausada
             if (looping) return;
-
             //Sansio do fortes
             spawn = Math.ceil(Math.random()*10)
             if(sans.song.paused == true) {
@@ -208,6 +203,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             final.innerHTML = "É recomendado que você rotacione o dispositivo"
             }
             else {
+                //Limpa a caixa de texto caso a tela tenha sido rotacionada pelo celular
                 if (currSize < 577) final.innerHTML = "Yeah"
             }
             currSize = window.innerWidth
@@ -221,14 +217,13 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         }
 
         function mclick(x){
-            
-            if (x == 'spare')
+            if (x.id == 'spare')
             {
                 click.play();
                 window.open("https://discord.gg/XXNQW7zdfc")
             }
             
-            if (x == 'act')
+            if (x.id == 'act')
             {
                 if (onTouchDevice)
                 {
@@ -243,29 +238,15 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                         final.innerHTML = 'Konami'
                     }
                 }
-            }
-            
+            } 
         }
 
         function menter(x){
-            if (x == "spare"){
-                spare.style.backgroundImage = "url('./assets/imagens/spare2.png')"
-            }
-            if (x == "act")
-            {
-                act.style.backgroundImage = "url('./assets/imagens/act2.png')"
-            }
+            x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}2.png`
             select.play()
         }
 
         function mout(x){
-            if (x == "spare"){
-                spare.style.backgroundImage = "url('./assets/imagens/spare.png')"
-            }
-            if (x == "act")
-            {
-                act.style.backgroundImage = "url('./assets/imagens/act.png')"
-            }
-            
+            x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}.png`
         }
 

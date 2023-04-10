@@ -93,17 +93,17 @@ header {
     color: white;
 }
 .fight {
-    background-image: url("./assets/imagens/fight.png");
+    background-image: url("./assets/imagens/botoes/fight.png");
 }
 .act {
-    background-image: url("./assets/imagens/act.png");
+    background-image: url("./assets/imagens/botoes/act.png");
 }
 .item {
-    background-image: url("./assets/imagens/item.png");
+    background-image: url("./assets/imagens/botoes/item.png");
 }
 .spare {
     display: flex;
-    background-image: url("./assets/imagens/spare.png");
+    background-image: url("./assets/imagens/botoes/spare.png");
     text-align: center;
     align-items: center;
     justify-content: center;
