@@ -53,6 +53,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         var act = document.getElementById('act')
         var cx = document.getElementById('cx')
         var final = document.getElementById('final')
+        var botão = document.getElementsByClassName('botão')
         let code = [
             "ArrowUp",
             "ArrowUp",
@@ -199,6 +200,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             sanses.src = !sans.sprite ? padrão.sprite : sans.sprite
         }
 
+        var currSize
         function screenSize()
         {
             if (falando) return;
@@ -206,8 +208,9 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             final.innerHTML = "É recomendado que você rotacione o dispositivo"
             }
             else {
-                final.innerHTML = "Yeah"
+                if (currSize < 577) final.innerHTML = "Yeah"
             }
+            currSize = window.innerWidth
         }
 
         function alternarError(){
@@ -235,6 +238,10 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 else 
                 {
                     locked.cloneNode().play()
+                    if(Math.floor(Math.random()*10) == 0)
+                    {
+                        final.innerHTML = 'Konami'
+                    }
                 }
             }
             

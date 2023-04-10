@@ -8,6 +8,18 @@
     src: url('./assets/fontes/comicsans.ttf');
 }
 
+@keyframes konam {
+    0% {
+      opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 body {
     background: rgb(0, 0, 0);
     font: normal 20pt Arial;
