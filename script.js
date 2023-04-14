@@ -30,7 +30,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
 
         const fortenaite = new Sans(
             "fortenaite",
-            null, //"./assets/imagens/sans.png",
+            null,
             "./assets/imagens/passinhoforte.webp",
             "./assets/audio/default.mp3",
             "./assets/audio/er.mp3"
@@ -47,6 +47,7 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
         let select = new Audio('./assets/audio/select.mp3')
         let click = new Audio('./assets/audio/click.mp3')
         let locked = new Audio('./assets/audio/locked.mp3')
+        volumeGlobal = 0.5
         let atual, padrão = sands;
         let sanses = document.getElementById('sans');
         var spare = document.getElementById('spare')
@@ -68,6 +69,8 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             "Enter" 
         ]
         let input = []
+        //Define todos os sons para o volume global
+        sands.song.volume = errorSans.song.volume = fortenaite.song.volume = locked.volume = click.volume = select.volume = volumeGlobal
         
         let txt;
         let para, falando = false;
@@ -151,13 +154,16 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                         let pbr = Math.round(Math.random()*10 + 5)/10
                         clone.preservesPitch = false;
                         clone.playbackRate = pbr;
+                        clone.volume = volumeGlobal;
                         clone.play();
                     }
                 }else 
                 {
                     //Não fala nos espaços
                     if (txt[i] !== " ") {
-                        voz.cloneNode().play();
+                        let clone = voz.cloneNode()
+                        clone.volume = volumeGlobal;
+                        clone.play();
                     }
                 }
                 //Não pausa nos espaços
@@ -174,7 +180,6 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
             tempo >= 5 ? tempo == 5 : tempo += 3
             if (looping) return;
             //Sansio do fortes
-            spawn = Math.ceil(Math.random()*10)
             if(sans.song.paused == true) {
                 sans.song.play()
                 loopMúsica(sans)
@@ -232,7 +237,9 @@ function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
                 }
                 else 
                 {
-                    locked.cloneNode().play()
+                    var clone = locked.cloneNode()
+                    clone.volume = volumeGlobal
+                    clone.play()
                     if(Math.floor(Math.random()*10) == 0)
                     {
                         final.innerHTML = 'Konami'

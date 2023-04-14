@@ -36,6 +36,7 @@ header {
     display: flex;
     justify-content: center;
     margin: 25px;
+    height: 142px;
 } 
 .sans {
     max-width: 182px;
