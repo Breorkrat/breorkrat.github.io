@@ -23,6 +23,7 @@
 body {
     background: rgb(0, 0, 0);
     font: normal 20pt Arial;
+    min-width: 600px;
 }
 
 header {
@@ -92,6 +93,7 @@ header {
     margin-top: 20px;
     height: 10px;
     color: white;
+    
 }
 .fight {
     background-image: url("./assets/imagens/botoes/fight.png");
