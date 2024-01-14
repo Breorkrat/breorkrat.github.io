@@ -10,7 +10,9 @@
 　| (￣ヽ＿_ヽ_)__)
 　二つ
 */
-function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)) }
+var conteúdo
+fetch("./assets/br-utf8.txt").then(x => x.text()).then(x => conteúdo = x.split("\n"))
 
 function Sans(nome, sprite, animação, song, fala) {
     this.nome = nome
@@ -73,9 +75,9 @@ let input = []
 sands.song.volume = errorSans.song.volume = fortenaite.song.volume = locked.volume = click.volume = select.volume = volumeGlobal
 
 let txt;
-let para, falando = false;
+let para = falando = false;
 let onTouchDevice = ('ontouchstart' in document.documentElement);
-
+atual = padrão
 addEventListener("resize", screenSize);
 screenSize()
 
@@ -113,10 +115,8 @@ cx.addEventListener('keydown', async (verif) => {
             para = true;
             return;
         }
-        falar(txt, atual)
-        /*if(box.checked == true){
-            enviarmsg(cx.value)
-        }*/
+        console.log(cx.value + " " + atual)
+        falar(cx.value, atual)
     }
 })
 
@@ -126,13 +126,13 @@ let looping = false;
 async function falar(txt, sans) {
     //Limpa o campo de fala
     final.innerHTML = ""
-    txt = cx.value.split("")
     falando = true;
     for (let i = 0; i < txt.length; i++) {
+        console.log(i)
         //Cancela caso receba um sinal para parar
         if (para == true) {
             //Reinicia a parte da fala
-            falando, para = false
+            falando = para = false
             falar(txt, sans)
             return;
         }
@@ -183,7 +183,7 @@ async function loopMúsica(sans) {
         tempo--;
         await sleep(100)
     }
-    looping = false;
+    looping = true;
     sans.song.pause()
     sanses.src = !sans.sprite ? padrão.sprite : sans.sprite
 }
@@ -228,6 +228,16 @@ function mclick(x) {
             }
         }
     }
+
+    if (x.id == 'fight') {
+        click.play()
+        if (falando == true) {
+            para = true;
+            return;
+        }
+        console.log(conteúdo[Math.floor(Math.random() * conteúdo.length)].split("") + " " + atual)
+        falar(conteúdo[Math.floor(Math.random() * conteúdo.length)], sands)
+    }
 }
 
 function menter(x) {
@@ -238,4 +248,3 @@ function menter(x) {
 function mout(x) {
     x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}.png`
 }
-
