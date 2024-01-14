@@ -124,6 +124,7 @@ let tempo = 0;
 let looping = false;
 
 async function falar(txt, sans) {
+    atual = padrão
     //Limpa o campo de fala
     console.log(txt)
     final.innerHTML = ""
@@ -184,7 +185,7 @@ async function loopMúsica(sans) {
         tempo--;
         await sleep(100)
     }
-    looping = true;
+    looping = false;
     sans.song.pause()
     sanses.src = !sans.sprite ? padrão.sprite : sans.sprite
 }
