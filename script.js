@@ -12,7 +12,7 @@
 */
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)) }
 var conteúdo
-fetch("./assets/br-utf8.txt").then(x => x.text()).then(x => conteúdo = x.split("\n"))
+fetch("./assets/Lista-de-Palavras.txt").then(x => x.text()).then(x => conteúdo = x.split("\n"))
 
 function Sans(nome, sprite, animação, song, fala) {
     this.nome = nome
@@ -125,6 +125,7 @@ let looping = false;
 
 async function falar(txt, sans) {
     //Limpa o campo de fala
+    console.log(txt)
     final.innerHTML = ""
     falando = true;
     for (let i = 0; i < txt.length; i++) {
@@ -235,8 +236,8 @@ function mclick(x) {
             para = true;
             return;
         }
-        console.log(conteúdo[Math.floor(Math.random() * conteúdo.length)].split("") + " " + atual)
-        falar(conteúdo[Math.floor(Math.random() * conteúdo.length)], sands)
+        let palavra = conteúdo[Math.floor(Math.random() * conteúdo.length)]
+        falar(palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase(), sands)
     }
 }
 
