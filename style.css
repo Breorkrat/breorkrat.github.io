@@ -8,6 +8,11 @@
     src: url('./assets/fontes/comicsans.ttf');
 }
 
+@font-face {
+    font-family: 'Papyrus';
+    src: url('./assets/fontes/papyrus.ttf')
+}
+
 @keyframes konam {
     0% {
       opacity: 0;
@@ -37,7 +42,8 @@ header {
     display: flex;
     justify-content: center;
     margin: 25px;
-    height: 142px;
+    object-fit: cover;
+    height: 170px;
 } 
 .sans {
     max-width: 182px;
@@ -124,4 +130,10 @@ header {
     color: white;
     font-family: 'Comic Sans';
     word-wrap: break-word;
+}
+
+#cushion {
+    min-width: 32px;
+    padding-left:95%;
+    padding-top: 50px
 }

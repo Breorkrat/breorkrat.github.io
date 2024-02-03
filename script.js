@@ -13,7 +13,11 @@
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)) }
 var conteúdo
 fetch("./assets/Lista-de-Palavras.txt").then(x => x.text()).then(x => conteúdo = x.split("\n"))
-
+const punsAmount = 12
+var pum = []
+for(let i = 0; i < punsAmount; i++){
+    pum.push(new Audio(`./assets/audio/pum/${i}.wav`))
+}
 function Sans(nome, sprite, animação, song, fala) {
     this.nome = nome
     this.sprite = sprite
@@ -24,8 +28,8 @@ function Sans(nome, sprite, animação, song, fala) {
 
 const sands = new Sans(
     "sans",
-    "./assets/imagens/sans.png",
-    "./assets/imagens/passinho.webp",
+    "./assets/imagens/sans/sprite.png",
+    "./assets/imagens/sans/moves.webp",
     "./assets/audio/song.mp3",
     "./assets/audio/er.mp3",
 )
@@ -33,17 +37,25 @@ const sands = new Sans(
 const fortenaite = new Sans(
     "fortenaite",
     null,
-    "./assets/imagens/passinhoforte.webp",
+    "./assets/imagens/fort/moves.webp",
     "./assets/audio/default.mp3",
     "./assets/audio/er.mp3"
 )
 
 const errorSans = new Sans(
     "error",
-    "./assets/imagens/error.png",
-    "./assets/imagens/errormandandoaquele.webp",
+    "./assets/imagens/error/sprite.png",
+    "./assets/imagens/error/moves.webp",
     "./assets/audio/errorlovania.mp3",
     "./assets/audio/er.mp3"
+)
+
+const papyrus = new Sans(
+    "papyrus",
+    "./assets/imagens/Papyrus/sprite.png",
+    "./assets/imagens/Papyrus/moves.webp",
+    "./assets/audio/bonestrousle.mp3",
+    "./assets/audio/papyrus.mp3"
 )
 
 let select = new Audio('./assets/audio/select.mp3')
@@ -57,6 +69,7 @@ var act = document.getElementById('act')
 var cx = document.getElementById('cx')
 var final = document.getElementById('final')
 var botão = document.getElementsByClassName('botão')
+var cushion = document.querySelector('#cushion')
 let code = [
     "ArrowUp",
     "ArrowUp",
@@ -67,18 +80,18 @@ let code = [
     "ArrowLeft",
     "ArrowRight",
     "b",
-    "a",
-    "Enter"
+    "a"
 ]
 let input = []
 //Define todos os sons para o volume global
-sands.song.volume = errorSans.song.volume = fortenaite.song.volume = locked.volume = click.volume = select.volume = volumeGlobal
+papyrus.song.volume = sands.song.volume = errorSans.song.volume = fortenaite.song.volume = locked.volume = click.volume = select.volume = volumeGlobal
 
 let txt;
 let para = falando = false;
 let onTouchDevice = ('ontouchstart' in document.documentElement);
 atual = padrão
 addEventListener("resize", screenSize);
+cushion.addEventListener('click', () => { poof() })
 screenSize()
 
 let botões = document.querySelectorAll(".botão")
@@ -124,13 +137,13 @@ let tempo = 0;
 let looping = false;
 
 async function falar(txt, sans) {
+    if (Math.floor(Math.random()*20) == 0) txt = "joga na blaze ae"
+    if (txt.toLowerCase() == "espaguete") papiro()
     atual = padrão
     //Limpa o campo de fala
-    console.log(txt)
     final.innerHTML = ""
     falando = true;
     for (let i = 0; i < txt.length; i++) {
-        console.log(i)
         //Cancela caso receba um sinal para parar
         if (para == true) {
             //Reinicia a parte da fala
@@ -206,8 +219,29 @@ function screenSize() {
 function alternarError() {
     if (padrão.nome == "sans") padrão = errorSans
     else if (padrão.nome == "error") padrão = sands
+    else if (padrão.nome == "papyrus") {
+        para = true
+        falar("não", "papyrus")
+        return;
+    }
     window.alert("What")
     sanses.src = padrão.sprite
+}
+
+function papiro() {
+    padrão = papyrus;
+    alternarFonte('Papyrus')
+}
+
+function poof() {
+    pum[Math.floor(Math.random()*punsAmount)].play()
+    padrão = sands;
+    alternarFonte('Comic Sans')
+}
+
+function alternarFonte(fonte){
+    cx.style.fontFamily = fonte
+    final.style.fontFamily = fonte
 }
 
 function mclick(x) {
