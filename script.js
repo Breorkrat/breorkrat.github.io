@@ -137,7 +137,10 @@ let looping = false;
 
 async function falar(txt, sans) {
     if (Math.floor(Math.random()*20) == 0) txt = "joga na blaze ae"
-    if (txt.toLowerCase() == "espaguete") papiro()
+    if (txt.toLowerCase() == "espaguete") {
+        papiro()
+        sans = papiro
+    }
     atual = padrão
     //Limpa o campo de fala
     final.innerHTML = ""
