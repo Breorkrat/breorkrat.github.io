@@ -52,8 +52,8 @@ const errorSans = new Sans(
 
 const papyrus = new Sans(
     "papyrus",
-    "./assets/imagens/Papyrus/sprite.png",
-    "./assets/imagens/Papyrus/moves.webp",
+    "./assets/imagens/papyrus/sprite.png",
+    "./assets/imagens/papyrus/moves.webp",
     "./assets/audio/bonestrousle.mp3",
     "./assets/audio/papyrus.mp3"
 )
