@@ -128,7 +128,6 @@ cx.addEventListener('keydown', async (verif) => {
             para = true;
             return;
         }
-        console.log(cx.value + " " + atual)
         falar(cx.value, atual)
     }
 })
