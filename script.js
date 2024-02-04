@@ -199,7 +199,8 @@ async function loopMúsica(sans) {
     }
     looping = false;
     sans.song.pause()
-    sanses.src = !sans.sprite ? padrão.sprite : sans.sprite
+    console.log(!sans.sprite)
+    sanses.src = padrão.sprite
 }
 
 var currSize
@@ -216,8 +217,14 @@ function screenSize() {
 }
 
 function alternarError() {
-    if (padrão.nome == "sans") padrão = errorSans
-    else if (padrão.nome == "error") padrão = sands
+    if (padrão.nome == "sans") {
+        padrão = errorSans
+        sanses.src = errorSans.sprite
+    }
+    else if (padrão.nome == "error") {
+        padrão = sands
+        sanses.src = sands.sprite
+    }
     else if (padrão.nome == "papyrus") {
         para = true
         falar("não", "papyrus")
@@ -228,18 +235,19 @@ function alternarError() {
 }
 
 function papiro() {
+    sanses.src = papyrus.sprite
     padrão = papyrus;
     alternarFonte('Papyrus')
 }
 
 function poof() {
+    sanses.src = sands.sprite
     pum[Math.floor(Math.random()*punsAmount)].play()
     padrão = sands;
     alternarFonte('Comic Sans')
 }
 
 function alternarFonte(fonte){
-    cx.style.fontFamily = fonte
     final.style.fontFamily = fonte
 }
 
@@ -271,7 +279,7 @@ function mclick(x) {
             return;
         }
         let palavra = conteúdo[Math.floor(Math.random() * conteúdo.length)]
-        falar(palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase(), sands)
+        falar(palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase(), atual)
     }
 }
 
