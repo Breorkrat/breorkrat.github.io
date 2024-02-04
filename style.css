@@ -135,5 +135,6 @@ header {
 #cushion {
     min-width: 32px;
     padding-left:95%;
-    padding-top: 50px
+    padding-top: 50px;
+    user-select: none;
 }
