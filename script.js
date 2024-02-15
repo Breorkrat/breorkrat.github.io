@@ -325,16 +325,18 @@ function mclick(x) {
     }
 
     if (x.id == 'act') {
-        let clone = locked.cloneNode()
-        clone.volume = volumeGlobal
-        clone.play();
-        if (overwrite) location.href = "./assets/old.html";
-
+        if (overwrite) {
+            location.href = "./assets/old.html";
+            return;
+        } 
         if (onTouchDevice) {
             click.play();
             alternarError()
         }
         else {
+            let clone = locked.cloneNode()
+            clone.volume = volumeGlobal
+            clone.play();
             if (Math.floor(Math.random() * 10) == 0) {
                 final.innerHTML = 'Konami'
             }
