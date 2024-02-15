@@ -18,6 +18,7 @@ var pum = []
 for(let i = 0; i < punsAmount; i++){
     pum.push(new Audio(`./assets/audio/pum/${i}.wav`))
 }
+
 function Sans(nome, sprite, animação, song, fala) {
     this.nome = nome
     this.sprite = sprite
@@ -66,10 +67,12 @@ let atual, padrão = sands;
 let sanses = document.getElementById('sans');
 var spare = document.getElementById('spare')
 var act = document.getElementById('act')
-var cx = document.getElementById('cx')
 var final = document.getElementById('final')
-var botão = document.getElementsByClassName('botão')
+var botões = document.querySelectorAll('.botão')
+var cx = document.querySelector('#cx')
 var cushion = document.querySelector('#cushion')
+var section = document.querySelector('#section')
+var box = document.querySelectorAll('.box')
 let code = [
     "ArrowUp",
     "ArrowUp",
@@ -91,10 +94,8 @@ let para = falando = false;
 let onTouchDevice = ('ontouchstart' in document.documentElement);
 atual = padrão
 addEventListener("resize", screenSize);
-cushion.addEventListener('click', () => { poof() })
 screenSize()
 
-let botões = document.querySelectorAll(".botão")
 for (let i = 0; i < botões.length; i++) {
     botões[i].addEventListener('click', () => { mclick(botões[i]) })
     botões[i].addEventListener('mouseover', () => { menter(botões[i]) })
@@ -113,6 +114,46 @@ window.addEventListener('keydown', async (tecla) => {
     }
 })
 
+// Tabela de itens
+let tabela = false
+const itens = [
+    {
+        img: "./assets/imagens/Whoopie_Cushion.png",
+        id: "pum"
+    },
+    {
+        img: "./assets/imagens/lol.png",
+        id: "lol"
+    }
+]
+
+const tbl = document.createElement("table");
+tbl.id = "tabela"
+const tblBody = document.createElement("tbody");
+let item = 0
+for (let i = 0; i < 2; i++) {
+    const row = document.createElement("tr");
+    for (let j = 0; j < 12; j++)  {
+        const cell = document.createElement("td");
+        const cellImage = document.createElement("img")
+
+        if (itens[item] != null) {
+            cellImage.src = itens[item].img
+            cellImage.id = itens[item].id
+            cellImage.addEventListener('click', () => { interact(cellImage.id) })
+        }
+        cellImage.style.display = "block"
+        cellImage.style.width = "100%"
+
+        cell.appendChild(cellImage);
+        row.appendChild(cell);
+        item++
+    }
+    tblBody.appendChild(row);
+}
+tbl.appendChild(tblBody);
+
+
 cx.addEventListener('keydown', async (verif) => {
     atual = padrão
     if (Math.floor(Math.random() * 10) == 0) {
@@ -124,18 +165,20 @@ cx.addEventListener('keydown', async (verif) => {
 
     //Cancela a fala caso ele já esteja falando
     if (verif.key == "Enter") {
-        if (falando == true) {
-            para = true;
-            return;
-        }
         falar(cx.value, atual)
     }
 })
 
 let tempo = 0;
 let looping = false;
+let novoTexto
 
 async function falar(txt, sans) {
+    if (falando == true) {
+        novoTexto = txt
+        para = true;
+        return;
+    }
     if (Math.floor(Math.random()*20) == 0) txt = "joga na blaze ae"
     if (txt.toLowerCase() == "espaguete") {
         papiro()
@@ -150,7 +193,7 @@ async function falar(txt, sans) {
         if (para == true) {
             //Reinicia a parte da fala
             falando = para = false
-            falar(txt, sans)
+            falar(novoTexto, sans)
             return;
         }
         //Escreve letra por letra tocando o áudio
@@ -167,7 +210,7 @@ async function falar(txt, sans) {
             }
         } else {
             //Não fala nos espaços
-            if (txt[i] !== " ") {
+            if (/^[A-Z-a-z!-@À-Üá-ü]*$/.test(txt[i])) {
                 const clone = voz.cloneNode()
                 //clone.volume = volumeGlobal
                 clone.play();
@@ -202,7 +245,6 @@ async function loopMúsica(sans) {
     }
     looping = false;
     sans.song.pause()
-    console.log(!sans.sprite)
     sanses.src = padrão.sprite
 }
 
@@ -243,11 +285,19 @@ function papiro() {
     alternarFonte('Papyrus')
 }
 
-function poof() {
-    sanses.src = sands.sprite
-    pum[Math.floor(Math.random()*punsAmount)].play()
-    padrão = sands;
-    alternarFonte('Comic Sans')
+function interact(id) {
+    if (id == "pum") {
+        sanses.src = sands.sprite
+        pum[Math.floor(Math.random()*punsAmount)].play()
+        padrão = sands;
+        alternarFonte('Comic Sans')
+    }
+    if (id == "lol"){
+        falar("aí não cara pelo amor de deus por favor né? vamo para já chega deu já mano saturou por favor", atual)
+    }
+    section.removeChild(tbl)
+    box[0].style.display = ""
+    box[1].style.display = ""
 }
 
 function alternarFonte(fonte){
@@ -275,6 +325,12 @@ function mclick(x) {
         }
     }
 
+    if (x.id == 'item') {
+            section.appendChild(tbl)
+            box[0].style.display = "none"
+            box[1].style.display = "none"
+    }
+
     if (x.id == 'fight') {
         click.play()
         if (falando == true) {
@@ -294,3 +350,4 @@ function menter(x) {
 function mout(x) {
     x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}.png`
 }
+

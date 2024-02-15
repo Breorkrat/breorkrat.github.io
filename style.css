@@ -46,12 +46,13 @@ header {
     height: 170px;
 } 
 .sans {
+    display: block;
     max-width: 182px;
     top: 50px;
     user-select: none;
 }
 
-.section {
+#section {
     user-select: none;
     background: rgba(0, 255, 76, 0);
     max-width: 566px;
@@ -62,7 +63,7 @@ header {
     outline-color: rgb(255, 255, 255);
     outline-width: 5px;
 }
-.asterisco {
+#asterisco {
     position: absolute;
     margin: 10px;
     color: white;
@@ -70,7 +71,7 @@ header {
     font-size: 130%;
     user-select: none;
 }
-.cx {
+#cx {
     resize: none;
     overflow: hidden;
     font-family: 'Determination';
@@ -137,4 +138,17 @@ header {
     padding-left:95%;
     padding-top: 50px;
     user-select: none;
+}
+
+#tabela {
+    position:relative;
+    left: 10px;
+    width: 540px;
+    height: 120px;
+}
+
+td {
+    padding: 5px;
+    height:10px;
+    width: 100px;
 }
