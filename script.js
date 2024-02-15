@@ -124,6 +124,10 @@ const itens = [
     {
         img: "./assets/imagens/lol.png",
         id: "lol"
+    },
+    {
+        img: './assets/imagens/xgaster.png',
+        id: "xgaster"
     }
 ]
 
@@ -285,6 +289,7 @@ function papiro() {
     alternarFonte('Papyrus')
 }
 
+overwrite = overloop = false
 function interact(id) {
     if (id == "pum") {
         sanses.src = sands.sprite
@@ -295,9 +300,15 @@ function interact(id) {
     if (id == "lol"){
         falar("aí não cara pelo amor de deus por favor né? vamo para já chega deu já mano saturou por favor", atual)
     }
+    if (id == "xgaster"){
+        overwrite ? overwrite = false : overwrite = true
+        if (overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/overwrite.png')"
+        if (!overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/act.png')"
+    }
     section.removeChild(tbl)
     box[0].style.display = ""
     box[1].style.display = ""
+    itensUI = false
 }
 
 function alternarFonte(fonte){
@@ -312,6 +323,8 @@ function mclick(x) {
     }
 
     if (x.id == 'act') {
+        if (overwrite) location.reload()
+
         if (onTouchDevice) {
             click.play();
             alternarError()
@@ -326,8 +339,8 @@ function mclick(x) {
         }
     }
 
-    
     if (x.id == 'item') {
+        click.play()
         if (!itensUI){
             section.appendChild(tbl)
             box[0].style.display = "none"
@@ -353,11 +366,29 @@ function mclick(x) {
 }
 
 function menter(x) {
+    if (x.id == "act" && overwrite) {
+        overloop = true
+        overwriteLoop()
+        return;
+    }
     x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}2.png`
     select.play()
 }
 
 function mout(x) {
+    if (x.id == "act" && overwrite) {
+        overloop = false
+        return;
+    }
     x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}.png`
 }
 
+async function overwriteLoop() {
+    if(!overloop) return;
+    while(true){
+        await sleep(100)
+        botões[1].style.background = `url('./assets/imagens/botoes/overwrite${Math.ceil(Math.random()*6)}.png')`
+        if (!overloop) break;
+    }
+    botões[1].style.background = `url('./assets/imagens/botoes/overwrite.png')`
+}
