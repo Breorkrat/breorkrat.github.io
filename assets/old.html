@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        sans.
+    </title>
+    <style>
+        body {
+            background: rgb(125, 123, 255);
+            font: normal 20pt Arial;
+        }
+
+        header {
+            color: white;
+            text-decoration: blueviolet;
+            position: relative;
+            text-align: center;
+            text-justify: auto;
+        }
+
+        section {
+            background: white;
+            width: 70%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 25px;
+            position: relative;
+            top: 70px;
+            box-shadow: rgba(0, 0, 0, 0.397) 20px 20px 15px;
+            margin:auto
+        }
+
+        div {
+            text-align: center;
+            padding: 10px;
+            padding-bottom: 20px;
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+        }
+
+        input.coisos {
+            
+            font: normal 15pt Arial;
+            width: 400px;
+            height: 30px;
+           
+        }
+
+        input.cx{
+            width: 100%;
+            font-size: 75%;
+            margin-bottom: 25px;
+            
+        }
+
+		div.final
+        {
+		font-family: 	Comic Sans Ms;
+		font-size:      30px;
+        }
+
+        .footer
+        {
+            padding-right: 25px;
+            position: relative;
+            top: 75px;
+        }
+    </style>
+    <link rel="icon" href="./favicon.png">
+</head>
+
+<body>
+    <header>
+        <h1>sans.</h1>
+    </header>
+    <section>
+        <div id="msg">
+            <input class = "cx" name="cx" id="cx" placeholder="Texto a ser escrito">
+            <div id="dv" class="final">Yeah<br>
+        </div>
+    </section>
+    <footer>
+            <div class="footer">               
+            <a href="https://discord.com/invite/XXNQW7zdfc"><img src="./imagens/logo.png" style="vertical-align: middle"></a>Breorkrat
+        </div>
+    </footer>
+    </h1>
+    <script>
+
+function sleep(ms) {  return new Promise(resolve => setTimeout(resolve, ms)) }
+
+		var sans = new Audio('./audio/er.mp3')
+        var song = new Audio('./audio/song.mp3')
+        
+		
+        //var bt = window.document.getElementById('bt')
+        var cx = document.getElementById('cx')
+        var dv = document.getElementById('dv')
+        let txt;
+ 
+        cx.addEventListener('keypress',  async (verif) => {
+            if (verif.key != "Enter") tocarMúsica()
+            if (verif.key == "Enter") {
+
+                dv.innerHTML = ""
+                txt = cx.value.split("")
+                sans.play();
+                
+                for(let i = 0; i < txt.length; i++){
+                    dv.innerHTML += `${txt[i]}`
+                        if(txt[i] !== " ") {
+                        sans.pause();
+                        sans.currentTime = 0.001;
+                        sans.play();
+                        }
+                    
+                    await sleep(35)
+                }
+            }
+        })
+        let tempo = 0;
+        let looping = false;
+        async function tocarMúsica()
+        {
+            //Coloca o limite de tempo em 2s
+            tempo > 2 ? tempo == 2 : tempo += 2
+
+            //Só começa a tocar caso a música esteja pausada
+            if(song.paused == true) song.play()
+
+            //Não passa por cima do *while* caso ele já esteja em execução,
+            //apenas o incrementa
+            if (looping) return;
+
+            //Sinaliza que um looping começou, decrementa em tempo a cada 0.1 segundos
+            looping = true;
+            while (tempo > 0)
+            {
+                tempo--;
+                await sleep(100)
+            }
+            looping = false;
+            song.pause()
+        }
+
+    </script>
+</html>

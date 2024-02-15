@@ -328,7 +328,7 @@ function mclick(x) {
         let clone = locked.cloneNode()
         clone.volume = volumeGlobal
         clone.play();
-        if (overwrite) location.reload()
+        if (overwrite) location.href = "./assets/old.html";
 
         if (onTouchDevice) {
             click.play();
