@@ -304,6 +304,7 @@ function alternarFonte(fonte){
     final.style.fontFamily = fonte
 }
 
+let itensUI = false
 function mclick(x) {
     if (x.id == 'spare') {
         click.play();
@@ -325,10 +326,19 @@ function mclick(x) {
         }
     }
 
+    
     if (x.id == 'item') {
+        if (!itensUI){
             section.appendChild(tbl)
             box[0].style.display = "none"
             box[1].style.display = "none"
+            itensUI = true
+        } else {
+            section.removeChild(tbl)
+            box[0].style.display = ""
+            box[1].style.display = ""
+            itensUI = false
+        }            
     }
 
     if (x.id == 'fight') {
