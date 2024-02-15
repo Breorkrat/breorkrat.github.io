@@ -318,11 +318,16 @@ function alternarFonte(fonte){
 let itensUI = false
 function mclick(x) {
     if (x.id == 'spare') {
-        click.play();
+        let clone = click.cloneNode()
+        clone.volume = volumeGlobal
+        clone.play();
         window.open("https://discord.gg/XXNQW7zdfc")
     }
 
     if (x.id == 'act') {
+        let clone = locked.cloneNode()
+        clone.volume = volumeGlobal
+        clone.play();
         if (overwrite) location.reload()
 
         if (onTouchDevice) {
@@ -330,9 +335,6 @@ function mclick(x) {
             alternarError()
         }
         else {
-            var clone = locked.cloneNode()
-            clone.volume = volumeGlobal
-            clone.play()
             if (Math.floor(Math.random() * 10) == 0) {
                 final.innerHTML = 'Konami'
             }
@@ -340,7 +342,9 @@ function mclick(x) {
     }
 
     if (x.id == 'item') {
-        click.play()
+        let clone = click.cloneNode()
+        clone.volume = volumeGlobal
+        clone.play();
         if (!itensUI){
             section.appendChild(tbl)
             box[0].style.display = "none"
@@ -355,11 +359,9 @@ function mclick(x) {
     }
 
     if (x.id == 'fight') {
-        click.play()
-        if (falando == true) {
-            para = true;
-            return;
-        }
+        let clone = click.cloneNode()
+        clone.volume = volumeGlobal
+        clone.play();
         let palavra = conteúdo[Math.floor(Math.random() * conteúdo.length)]
         falar(palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase(), atual)
     }
