@@ -18,6 +18,8 @@ var pum = []
 for(let i = 0; i < punsAmount; i++){
     pum.push(new Audio(`./assets/audio/pum/${i}.wav`))
 }
+var imagensAtivas;
+preload()
 
 function Sans(nome, sprite, animação, song, fala) {
     this.nome = nome
@@ -88,6 +90,8 @@ let code = [
 let input = []
 //Define todos os sons para o volume global
 papyrus.song.volume = sands.song.volume = errorSans.song.volume = fortenaite.song.volume = locked.volume = click.volume = select.volume = volumeGlobal
+
+
 
 let txt;
 let para = falando = false;
@@ -302,7 +306,7 @@ function interact(id) {
     }
     if (id == "xgaster"){
         overwrite ? overwrite = false : overwrite = true
-        if (overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/overwrite.png')"
+        if (overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/aoverwrite.png')"
         if (!overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/act.png')"
     }
     section.removeChild(tbl)
@@ -375,7 +379,8 @@ function menter(x) {
         overwriteLoop()
         return;
     }
-    x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}2.png`
+    x.style.backgroundImage = `url(./assets/imagens/botoes/a${x.id}.png)`
+    //x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}2.png`
     select.play()
 }
 
@@ -391,8 +396,29 @@ async function overwriteLoop() {
     if(!overloop) return;
     while(true){
         await sleep(100)
-        botões[1].style.background = `url('./assets/imagens/botoes/overwrite${Math.ceil(Math.random()*6)}.png')`
+        botões[1].style.background = `url('./assets/imagens/botoes/aoverwrite${Math.ceil(Math.random()*6)}.png')`
         if (!overloop) break;
     }
-    botões[1].style.background = `url('./assets/imagens/botoes/overwrite.png')`
+    botões[1].style.background = `url('./assets/imagens/botoes/aoverwrite.png')`
+}
+
+async function preload(){
+    imagensAtivas = [
+        "act",
+        "fight",
+        "item",
+        "spare",
+        "overwrite",
+        "overwrite1",
+        "overwrite2",
+        "overwrite3",
+        "overwrite4",
+        "overwrite5",
+        "overwrite6"
+    ]
+    
+    for (key in imagensAtivas) {
+        const cellImage = document.createElement("img")
+        cellImage.src = `./assets/imagens/botoes/a${imagensAtivas[key]}.png`
+    }
 }
