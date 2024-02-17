@@ -15,11 +15,13 @@
 
 @keyframes konam {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
+
     50% {
         opacity: 0.7;
     }
+
     100% {
         opacity: 0;
     }
@@ -41,15 +43,15 @@ header {
 .containersans {
     display: flex;
     justify-content: center;
-    margin: 25px;
-    object-fit: cover;
     height: 170px;
-} 
+}
+
 .sans {
     display: block;
-    max-width: 182px;
-    top: 50px;
+    object-fit: scale-down;
+    position: absolute;
     user-select: none;
+    height: 200px;
 }
 
 #section {
@@ -63,6 +65,7 @@ header {
     outline-color: rgb(255, 255, 255);
     outline-width: 5px;
 }
+
 #asterisco {
     position: absolute;
     margin: 10px;
@@ -71,6 +74,7 @@ header {
     font-size: 130%;
     user-select: none;
 }
+
 #cx {
     resize: none;
     overflow: hidden;
@@ -83,14 +87,16 @@ header {
     margin-left: 35px;
     margin-top: 10px;
     font-size: 100%;
-    outline:none;
+    outline: none;
     border-color: transparent;
     scrollbar-highlight-color: transparent;
 }
+
 .hp {
     text-align: center;
     margin-top: 30px;
 }
+
 .botões {
     justify-content: center;
     display: grid;
@@ -100,17 +106,21 @@ header {
     margin-top: 20px;
     height: 10px;
     color: white;
-    
+
 }
+
 .fight {
     background-image: url("./assets/imagens/botoes/fight.png");
 }
+
 .act {
     background-image: url("./assets/imagens/botoes/act.png");
 }
+
 .item {
     background-image: url("./assets/imagens/botoes/item.png");
 }
+
 .spare {
     display: flex;
     background-image: url("./assets/imagens/botoes/spare.png");
@@ -118,11 +128,13 @@ header {
     align-items: center;
     justify-content: center;
 }
+
 .logo {
     margin-left: 10px;
     pointer-events: none;
     user-select: none;
 }
+
 .final {
     margin: auto;
     width: 60%;
@@ -135,13 +147,13 @@ header {
 
 #cushion {
     min-width: 32px;
-    padding-left:95%;
+    padding-left: 95%;
     padding-top: 50px;
     user-select: none;
 }
 
 #tabela {
-    position:relative;
+    position: relative;
     left: 10px;
     width: 540px;
     height: 120px;
@@ -149,6 +161,6 @@ header {
 
 td {
     padding: 5px;
-    height:10px;
+    height: 10px;
     width: 100px;
 }

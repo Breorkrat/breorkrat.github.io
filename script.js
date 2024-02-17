@@ -11,15 +11,14 @@
 　二つ
 */
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)) }
-var conteúdo
+preload()
+var conteúdo, imagensAtivas;
 fetch("./assets/Lista-de-Palavras.txt").then(x => x.text()).then(x => conteúdo = x.split("\n"))
 const punsAmount = 12
 var pum = []
 for(let i = 0; i < punsAmount; i++){
     pum.push(new Audio(`./assets/audio/pum/${i}.wav`))
 }
-var imagensAtivas;
-preload()
 
 function Sans(nome, sprite, animação, song, fala) {
     this.nome = nome
@@ -112,7 +111,6 @@ window.addEventListener('keydown', async (tecla) => {
     if (input.length > code.length) {
         input.shift()
     }
-
     if (input.toString() == code.toString()) {
         alternarError()
     }
@@ -135,40 +133,17 @@ const itens = [
     }
 ]
 
-const tbl = document.createElement("table");
-tbl.id = "tabela"
-const tblBody = document.createElement("tbody");
-let item = 0
-for (let i = 0; i < 2; i++) {
-    const row = document.createElement("tr");
-    for (let j = 0; j < 12; j++)  {
-        const cell = document.createElement("td");
-        const cellImage = document.createElement("img")
-
-        if (itens[item] != null) {
-            cellImage.src = itens[item].img
-            cellImage.id = itens[item].id
-            cellImage.addEventListener('click', () => { interact(cellImage.id) })
-        }
-        cellImage.style.display = "block"
-        cellImage.style.width = "100%"
-
-        cell.appendChild(cellImage);
-        row.appendChild(cell);
-        item++
-    }
-    tblBody.appendChild(row);
-}
-tbl.appendChild(tblBody);
-
+const tblItens = document.createElement("table");
+criarTabela()
 
 cx.addEventListener('keydown', async (verif) => {
     atual = padrão
     if (Math.floor(Math.random() * 10) == 0) {
         atual = fortenaite
     }
+    console.log(verif.key)
     //Isso é um RegEx, onde ele procura por letras de A-Z em maiúsculo e minúsculo, e caracteres de "! à @" em unicode, o que inclui os números
-    if (/^[A-Z-a-z!-@À-Üá-ü]*$/.test(verif.key) == false || verif.key == "Shift" || verif.key == "Control") return;
+    if (verif.key == "Shift" || verif.key == "Control") return;
     if (verif.key != "Enter") tocarMúsica(atual)
 
     //Cancela a fala caso ele já esteja falando
@@ -190,7 +165,7 @@ async function falar(txt, sans) {
     if (Math.floor(Math.random()*20) == 0) txt = "joga na blaze ae"
     if (txt.toLowerCase() == "espaguete") {
         papiro()
-        sans = papiro
+        sans = papyrus
     }
     atual = padrão
     //Limpa o campo de fala
@@ -206,7 +181,7 @@ async function falar(txt, sans) {
         }
         //Escreve letra por letra tocando o áudio
         final.innerHTML += `${txt[i]}`
-        let voz = !sans.fala ? padrão.fala : sans.fala
+        let voz = sans.fala ? sans.fala : padrão.fala
         if (padrão.nome == "error") {
             if (txt[i] !== " ") {
                 let clone = voz.cloneNode()
@@ -220,7 +195,6 @@ async function falar(txt, sans) {
             //Não fala nos espaços
             if (/^[A-Z-a-z!-@À-Üá-ü]*$/.test(txt[i])) {
                 const clone = voz.cloneNode()
-                //clone.volume = volumeGlobal
                 clone.play();
             }
         }
@@ -270,6 +244,7 @@ function screenSize() {
 }
 
 function alternarError() {
+    tempo = 0
     if (padrão.nome == "sans") {
         padrão = errorSans
         sanses.src = errorSans.sprite
@@ -279,7 +254,6 @@ function alternarError() {
         sanses.src = sands.sprite
     }
     else if (padrão.nome == "papyrus") {
-        para = true
         falar("não", "papyrus")
         return;
     }
@@ -288,8 +262,10 @@ function alternarError() {
 }
 
 function papiro() {
+    if (atual == papyrus) return;
     sanses.src = papyrus.sprite
     padrão = papyrus;
+    tempo = 0
     alternarFonte('Papyrus')
 }
 
@@ -306,10 +282,10 @@ function interact(id) {
     }
     if (id == "xgaster"){
         overwrite ? overwrite = false : overwrite = true
-        if (overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/aoverwrite.png')"
+        if (overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/overwrite.png')"
         if (!overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/act.png')"
     }
-    section.removeChild(tbl)
+    section.removeChild(tblItens)
     box[0].style.display = ""
     box[1].style.display = ""
     itensUI = false
@@ -352,12 +328,12 @@ function mclick(x) {
         clone.volume = volumeGlobal
         clone.play();
         if (!itensUI){
-            section.appendChild(tbl)
+            section.appendChild(tblItens)
             box[0].style.display = "none"
             box[1].style.display = "none"
             itensUI = true
         } else {
-            section.removeChild(tbl)
+            section.removeChild(tblItens)
             box[0].style.display = ""
             box[1].style.display = ""
             itensUI = false
@@ -368,8 +344,7 @@ function mclick(x) {
         let clone = click.cloneNode()
         clone.volume = volumeGlobal
         clone.play();
-        let palavra = conteúdo[Math.floor(Math.random() * conteúdo.length)]
-        falar(palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase(), atual)
+        falar(conteúdo[Math.floor(Math.random() * conteúdo.length)], atual)
     }
 }
 
@@ -399,26 +374,53 @@ async function overwriteLoop() {
         botões[1].style.background = `url('./assets/imagens/botoes/aoverwrite${Math.ceil(Math.random()*6)}.png')`
         if (!overloop) break;
     }
-    botões[1].style.background = `url('./assets/imagens/botoes/aoverwrite.png')`
+    botões[1].style.background = `url('./assets/imagens/botoes/overwrite.png')`
 }
 
 async function preload(){
     imagensAtivas = [
-        "act",
-        "fight",
-        "item",
-        "spare",
+        "aact",
+        "afight",
+        "aitem",
+        "aspare",
         "overwrite",
-        "overwrite1",
-        "overwrite2",
-        "overwrite3",
-        "overwrite4",
-        "overwrite5",
-        "overwrite6"
+        "aoverwrite1",
+        "aoverwrite2",
+        "aoverwrite3",
+        "aoverwrite4",
+        "aoverwrite5",
+        "aoverwrite6"
     ]
     
-    for (key in imagensAtivas) {
+    imagensAtivas.forEach((imagem) => {
         const cellImage = document.createElement("img")
-        cellImage.src = `./assets/imagens/botoes/a${imagensAtivas[key]}.png`
+        cellImage.src = `./assets/imagens/botoes/${imagem}.png`
+    })
+}
+
+function criarTabela(){    
+    tblItens.id = "tabela"
+    const tblBody = document.createElement("tbody");
+    let item = 0
+    for (let i = 0; i < 2; i++) {
+        const row = document.createElement("tr");
+        for (let j = 0; j < 12; j++)  {
+            const cell = document.createElement("td");
+            const cellImage = document.createElement("img")
+    
+            if (itens[item] != null) {
+                cellImage.src = itens[item].img
+                cellImage.id = itens[item].id
+                cellImage.addEventListener('click', () => { interact(cellImage.id) })
+            }
+            cellImage.style.display = "block"
+            cellImage.style.width = "100%"
+    
+            cell.appendChild(cellImage);
+            row.appendChild(cell);
+            item++
+        }
+        tblBody.appendChild(row);
     }
+    tblItens.appendChild(tblBody);
 }
