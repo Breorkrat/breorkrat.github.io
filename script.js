@@ -14,7 +14,6 @@ function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)) }
 preload()
 var conteúdo, imagensAtivas;
 fetch("./assets/Lista-de-Palavras.txt").then(x => x.text()).then(x => conteúdo = x.split("\n"))
-fetch("./.well-known/discord").then(x => console.log(x.text()))
 const punsAmount = 12
 var pum = []
 for(let i = 0; i < punsAmount; i++){
