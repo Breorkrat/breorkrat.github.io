@@ -21,8 +21,7 @@ for(let i = 0; i < punsAmount; i++){
 }
 var piadas = []
 fetch("./assets/herherher.txt").then(x => x.text()).then(x => {
-    piadas = x.split("\r")
-    piadas = piadas.split("\n")
+    piadas = x.split("\r")[0].split("\n")
   }
 )
 var papiadas = [
@@ -331,8 +330,6 @@ async function interact(id) {
 
         case "osso":
             let escolha = piadas[Math.floor(Math.random()*piadas.length)]
-            console.log(escolha)
-            console.log(`${atual}, ${papyrusPiada}`)
             if (atual.nome == "error") falar("sua vida.", atual, false) 
             if (atual.nome == "sans") falar(escolha, atual, true)
             if (atual.nome == "papyrus") {
