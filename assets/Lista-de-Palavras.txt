@@ -796,7 +796,7 @@ Agonizante
 Agonizar
 Agora
 Agorafobia
-Agora fóbico
+Agorafóbico
 Agorinha
 Agostiniano
 Agosto
@@ -1009,7 +1009,6 @@ Alegre
 Alegria
 Aleia
 Aleijado
-Aleija o
 Aleijar
 Aleitamento
 Aleitar
@@ -1022,7 +1021,7 @@ Alemanha
 Alemão
 Alemão-ocidental
 Alemão-oriental
-Alencar ano
+Alencariano
 Aleno
 Alentador
 Alentar
@@ -1169,7 +1168,7 @@ Alocução
 Aloe
 Alofone
 Alofonia
-Alo fônico
+Alofônico
 Alógico
 Ilogismo
 Halógrafo
@@ -1632,7 +1631,7 @@ Anestesiante
 Anestesiar
 Anestésico
 Anestesiologia
-Anestesio logico
+Anestesiologico
 Anestesiologista
 Anestesista
 Aneurisma
@@ -2426,7 +2425,7 @@ Arrepiar
 Arrepio
 Arretado
 Arrevesado
-Arrevesa mento
+Arrevesamento
 Arrevesar
 Arriado
 Arriar
@@ -2944,8 +2943,8 @@ Auto-de-fé
 Autoescola
 Autoestima
 Autoestrada
-Auto hipnose
-Auto hipnótico
+Auto-hipnose
+Auto-hipnótico
 Autoimune
 Autoimunidade
 Aloimunização
@@ -3327,7 +3326,6 @@ Bandido
 Banditismo
 Bando
 Bandoleiro
-Bando íon
 Bangalô
 Bangue-bangue
 Banguela
@@ -3527,7 +3525,6 @@ Bebe
 Bebedeira
 Bêbedo
 Bebedouro
-Bebe morar
 Beber
 Bebericar
 Beberrão
@@ -3601,7 +3598,6 @@ Bem-visto
 Bemol
 Benção
 Bençãos
-Bend engo
 Bendito
 Bendizer
 Bene
@@ -3662,7 +3658,6 @@ Berrar
 Berreiro
 Berro
 Besouro
-Bessa rabio
 Best-seller
 Besta
 Destalha-o
@@ -3681,7 +3676,7 @@ Besuntar
 Beta
 Beta-teste
 Betavam
-Beta Max
+Beta-Max
 Beterraba
 Betoneira
 Bétula
@@ -3799,7 +3794,7 @@ Bingo
 Binoculo
 Binomial
 Binômio
-Bi normal
+Bi-normal
 Biociência
 Biodegradável
 Biodigestor
@@ -3854,7 +3849,7 @@ Birosca
 Birra
 Birreme
 Birrento
-Bi retângulo
+Bi-retângulo
 Biruta
 Birutice
 Bis
@@ -3892,7 +3887,7 @@ Bitolado
 Bitolar
 Bitransitivo
 Bitributação
-Bi tributar
+Bi-tributar
 Bittar
 Bituca
 Biunívoca
@@ -4001,8 +3996,8 @@ Bola-ao-chão
 Bola-de-neve
 Bola-presa
 Bolacha
-Bolacha-d ‘água
-Bolacha-d ‘água-e-sal
+Bolacha-d‘água
+Bolacha-d‘água-e-sal
 Abolachada
 Bolaço
 Bolada
@@ -4107,7 +4102,6 @@ Boreal
 Boricada
 Borriçado
 Boro
-Boro coxo
 Borra
 Borra-botas
 Borracha
@@ -4157,7 +4151,7 @@ Bovespa
 Bovino
 Boxe
 Boxeador
-Bo imane
+Boximane
 Br
 Brabo
 Braça
@@ -4215,7 +4209,7 @@ Bretão
 Breu
 Breve
 Braveado
-Breve ar
+Brevear
 Breviário
 Brevidade
 Brida
@@ -4321,7 +4315,6 @@ Bugalhos
 Bugiganga
 Bugigangas
 Bugre
-Buja o
 Bula
 Bulbo
 Buldogue
@@ -4514,7 +4507,7 @@ Cafeeiro
 Cafeicultor
 Cafeicultura
 Cafeína
-Cafeta o
+Cafetão
 Cafeteira
 Cafetina
 Cafezal
@@ -4545,7 +4538,6 @@ Caipirinha
 Caipora
 Cair
 Cais
-Cai ser
 Caixa
 Caixa-d’água
 Caixa-forte
@@ -4578,7 +4570,6 @@ Calão
 Calar
 Calca
 Calcada
-Calcada o
 Calcadeira
 Calcado
 Calcados
@@ -4758,7 +4749,7 @@ Canapê
 Canarinho
 Canario
 Canastra
-Canastra o
+Canastrado
 Canavial
 Cancã
 Canção
@@ -5755,7 +5746,6 @@ Chumbado
 Chumbar
 Chumbinho
 Chumbo
-Chumbo-tetra etila
 Chupada
 Chupadela
 Chupado
@@ -7213,7 +7203,6 @@ Copas
 Copázio
 Copeira
 Copeiro
-Cope que
 Copia
 Copiadora
 Copião
@@ -7417,7 +7406,7 @@ Cosmogonia
 Cosmogônico
 Cosmologia
 Cosmológico
-Cosmo logo
+Cosmólogo
 Cosmonauta
 Cosmonáutica
 Cosmonave
@@ -7861,7 +7850,7 @@ Damas
 Damasceno
 Damasco
 Damasqueiro
-Da mista
+Damista
 Danação
 Danado
 Danar
@@ -8477,7 +8466,7 @@ Desapropriar
 Desaprovação
 Desaprovar
 Desarmado
-De armamentismo
+Desarmamentismo
 Desarmamento
 Desarmar
 Desarraigar
@@ -8564,7 +8553,7 @@ Descaso
 Descendência
 Descendente
 Descender
-Descentra lismo
+Descentralismo
 Descentralização
 Descentralizado
 Descentralizar
@@ -8887,7 +8876,7 @@ Deslealdade
 Desleixado
 Desleixar
 Desleixo
-Desligada o
+Desligadão
 Desligado
 Desligamento
 Desligar
@@ -9200,7 +9189,7 @@ Detectar
 Detectável
 Detector
 Detenção
-De tente
+Detente
 Detento
 Detentor
 Deter
@@ -9644,7 +9633,7 @@ Distributivo
 Distrital
 Distrito
 Distrofia
-Distrofia do
+Distrofiado
 Distúrbio
 Dita
 Ditado
@@ -10308,7 +10297,7 @@ Embreagem
 Embrear
 Embrenhar
 Embriagado
-Embriaga mento
+Embriagamento
 Embriagante
 Embriagar
 Embriaguez
@@ -10854,7 +10843,7 @@ Enrodilhar
 Enrolado
 Enrolador
 Enrolamento
-Enrola o
+Enrola-o
 Enrolar
 Enroscar
 Enrubescer
@@ -10957,7 +10946,7 @@ Entrevistador
 Entrevistar
 Entrincheirar
 Entristecer
-Entristeci mento
+Entristecimento
 Entroncamento
 Entroncar
 Entronização
@@ -11280,7 +11269,7 @@ Esclarecer
 Esclarecido
 Esclarecimento
 Esclerosado
-Escleros amento
+Esclerosamento
 Esclerosar
 Esclerose
 Esclerótica
@@ -11450,7 +11439,7 @@ Esfuziante
 Esganado
 Esganar
 Esgarçar
-Esgoela mento
+Esgoelamento
 Esgoelar
 Esgotado
 Esgotamento
@@ -11969,7 +11958,7 @@ Estrada
 Estradivário
 Estrado
 Estragado
-Estraga o
+Estraga-o
 Estragar
 Estrago
 Estralar
@@ -12941,7 +12930,7 @@ Fertilizar
 Ferventar
 Fervente
 Ferver
-Fervilha mento
+Fervilhamento
 Fervilhar
 Fervor
 Fervoroso
@@ -13053,7 +13042,7 @@ Filme
 Filmes
 Fílmico
 Filmografia
-Filmo gráfico
+Filmo-gráfico
 Filmoteca
 Filo
 Filologia
@@ -13196,7 +13185,7 @@ Flexão
 Flexibilidade
 Flexionado
 Flexional
-Flexiona mento
+Flexionamento
 Flexionar
 Flexionável
 Flexível
@@ -13429,7 +13418,7 @@ Fotocompositora
 Fotocopia
 Fotocopiadora
 Fotocopiar
-Foto eletricidade
+Fotoeletricidade
 Fotoelétrico
 Fotogênico
 Fotografar
@@ -13616,7 +13605,7 @@ Frustrar
 Fruta
 Fruta-do-conde
 Fruta-pão
-Fru arianismo
+Frutarianismo
 Frutas
 Fruteira
 Fruticultor
@@ -13732,7 +13721,6 @@ Furúnculo
 Fusa
 Fusão
 Fusca
-Fusca o
 Fusco
 Fuselagem
 Fuso
@@ -13814,7 +13802,6 @@ Galhofa
 Galhofeiro
 Galicismo
 Gálico
-Gali mimo
 Galináceo
 Galinha
 Galinha-morta
@@ -13867,7 +13854,6 @@ Ganha-pão
 Ganhador
 Ganhar
 Ganho
-Gani medes
 Ganso
 Garagem
 Garagista
@@ -13994,7 +13980,6 @@ Generalista
 Generalização
 Generalizado
 Generalizar
-Gene ator
 Genérico
 Gênero
 Gêneros
@@ -14258,7 +14243,7 @@ Gospel
 Gostar
 Gostariam
 Gosto
-Gostos ao
+Gostosão
 Gostoso
 Gostosona
 Gostosura
@@ -14523,7 +14508,7 @@ Habeas-corpus
 Hábil
 Habilidade
 Habilidoso
-Ha bílis
+Habílis
 Habilitação
 Habilitado
 Habilitar
@@ -14561,7 +14546,6 @@ Haltere
 Halterofilia
 Halterofilismo
 Halterofilista
-Hama dríade
 Hamburguer
 Hand
 Handball
@@ -14989,7 +14973,6 @@ Humus
 Húngaro
 Huno
 Hori
-Huron ano
 Hurra
 Husky
 Hutu
@@ -15872,7 +15855,7 @@ Infectar
 Infecto
 Infectocontagioso
 Infectologia
-Infecto logico
+Infectológico
 Infecundidade
 Infecundo
 Infelicidade
@@ -16302,7 +16285,6 @@ Interfixa
 Interfixo
 Interfone
 Intergaláctico
-Inter glossa
 Intergovernamental
 Interim
 Interinar
@@ -16471,7 +16453,7 @@ Inumerável
 Inúmero
 Inundação
 Inundado
-Inunda mento
+Inundamento
 Inundante
 Inundar
 Inundável
@@ -16746,7 +16728,7 @@ Jacobinismo
 Jacobino
 Jacta
 Jactância
-Jacta ciar-se
+Jactanciar-se
 Jactar-se
 Jacu
 Jacutinga
@@ -17208,7 +17190,7 @@ Laurear
 Laurêncio
 Lauto
 Lava
-Lava-lo uca
+Lava-louça
 Lava-pé
 Lavabo
 Lavada
@@ -17532,10 +17514,9 @@ Linho
 Linimento
 Linoleico
 Linóleo
-Linotipada rã
 Linotipar
 Linotipia
-Lino típico
+Linotípico
 Linotipista
 Linotipo
 Lipase
@@ -18787,7 +18768,7 @@ Micróbio
 Microbiologia
 Microbiológico
 Microbiologista
-Micro biólogo
+Micro-biólogo
 Microclima
 Microcomputador
 Microeconomia
@@ -18856,7 +18837,7 @@ Militarista
 Militarização
 Militarizar
 Milk-shake
-Milton ano
+Miltoniano
 Mim
 Mimado
 Mimar
@@ -19436,7 +19417,7 @@ Munificente
 Munir
 Muno
 Muque
-Muqui rã
+Muquirana
 Murado
 Mural
 Muralha
@@ -20006,7 +19987,7 @@ Numerário
 Numérico
 Numero
 Numerologia
-Número logico
+Númerologico
 Numerologia
 Numerólogo
 Números
@@ -20132,7 +20113,7 @@ Oceânico
 Oceano
 Oceanografia
 Oceanográfico
-Oceano grafista
+Oceanografista
 Oceanógrafo
 Ocidental
 Ocidentalização
@@ -20294,7 +20275,6 @@ Ombros
 Ombudsman
 Ômega
 Omelete
-Omelete irá
 Mícron
 Omissão
 Omisso
@@ -20396,7 +20376,7 @@ Optar
 Optativo
 Ótico
 Optometria
-Opto métrico
+Optométrico
 Optometrista
 Opulência
 Opulento
@@ -20597,7 +20577,7 @@ Oval
 Ovalarão
 Ovalado
 Ovalar
-Ovalo ide
+Ovaloide
 Ovariano
 Ovário
 Ovelha
@@ -20731,7 +20711,7 @@ Palatalizado
 Palatalizar
 Palatável
 Palato
-Palato alveolar
+Palatoalveolar
 Palatofaríngeo
 Palatolabial
 Palatolingual
@@ -20928,7 +20908,7 @@ Parabólica
 Parabólico
 Paraboloide
 Parada
-Parada o
+Paradão
 Paradeiro
 Paradigma
 Paradigmático
@@ -22082,7 +22062,7 @@ Pliocênico
 Plioceno
 Plissado
 Plissagem
-Plissa mento
+Plissamento
 Plissar
 Plisse
 Pleistocênico
@@ -22224,7 +22204,7 @@ Polinização
 Polinizador
 Polinizar
 Polinômio
-Poli nucleotídeo
+Polinucleotídeo
 Pólio
 Poliomielite
 Polipeptídico
@@ -22779,7 +22759,6 @@ Preparatório
 Preparo
 Preponderante
 Preponderar
-Preponderar anciã
 Preposição
 Preposicional
 Prepotência
@@ -22998,7 +22977,7 @@ Próclise
 Proclítico
 Procon
 Procônsul
-Pro consulado
+Proconsulado
 Proconsular
 Procrastinação
 Procrastinado
@@ -23651,7 +23630,7 @@ Quietude
 Quilate
 Quilo
 Quilocaloria
-Quilo ciclo
+Quilociclo
 Quilograma
 Quilograma-força
 Quilohertz
@@ -23675,7 +23654,7 @@ Quimioterapia
 Quimioterápico
 Quimono
 Quina
-Quinda o
+Quindão
 Quindim
 Quinhão
 Quingentésimo
@@ -23793,7 +23772,7 @@ Radio
 Radioamador
 Radioamadorismo
 Radioastronomia
-Radio astronômico
+Radioastronômico
 Radioativa
 Radioatividade
 Radioativo
@@ -23876,7 +23855,6 @@ Rap
 Rapa
 Rapadura
 Rapagão
-Rap anui
 Rapar
 Rapariga
 Rapaz
@@ -23889,7 +23867,7 @@ Rapina
 Rapinar
 Raposa
 Rapsódia
-Rap sódico
+Rapsódico
 Raptado
 Raptar
 Rapto
@@ -24530,7 +24508,7 @@ Reinar
 Reincidência
 Reincidente
 Reincidir
-Reincita mento
+Reincitamento
 Reincitar
 Reincorporação
 Reincorporar
@@ -25385,7 +25363,7 @@ Rodagem
 Rodapé
 Rodar
 Rodas
-Rode amento
+Rodeamento
 Rodear
 Rodeio
 Rodela
@@ -25393,7 +25371,7 @@ Rodesiano
 Rodizio
 Rodo
 Rododendro
-Rodo moca
+Rodomoca
 Rodopiar
 Rodopio
 Rodovia
@@ -25542,7 +25520,7 @@ Rudimentos
 Rueiro
 Ruela
 Rufar
-Rufia o
+Rufião
 Rufo
 Ruga
 Rúgbi
@@ -25588,8 +25566,8 @@ Russo
 Russo-americano
 Rustico
 Rutênio
-Rutherford Io
-Rutila cia
+Rutherfórdio
+Rutilancia
 Rutilante
 Rutilar
 S.o.s.
@@ -26304,7 +26282,7 @@ Sexta
 Sexta-feira
 Sextavado
 Sexteto
-Sextilha o
+Sextilhão
 Sexto
 Sêxtuplo
 Sêxtuplos
@@ -26517,7 +26495,7 @@ Sismográfico
 Sismógrafo
 Sismologia
 Sismológico
-Sismo logo
+Sismólogo
 Siso
 Sistema
 Sistemas
@@ -26563,7 +26541,7 @@ Sobrecarga
 Sobrecarregar
 Sobrecasaca
 Sobrecomum
-Sob ejetora
+Sobejetora
 Sobreloja
 Sobremaneira
 Sobremesa
@@ -27309,7 +27287,7 @@ Talagada
 Tálamo
 Talão
 Talassemia
-Tal assêmico
+Talassêmico
 Talco
 Talento
 Talentoso
@@ -27511,7 +27489,7 @@ Teixo
 Tela
 Telão
 Telecinesia
-Telecine tico
+Telecinético
 Telecomandado
 Telecomandar
 Telecomando
@@ -27661,7 +27639,7 @@ Tepidez
 Tépido
 Tequila
 Ter
-Terá byte
+Terabyte
 Terapeuta
 Terapêutica
 Terapêutico
@@ -27727,7 +27705,7 @@ Terrível
 Terror
 Terrorismo
 Terrorista
-Tesa o
+Tesão
 Tese
 Tesla
 Teso
@@ -27774,7 +27752,7 @@ Tetravalente
 Tetravó
 Tétrico
 Teu
-Teuta o
+Teutão
 Teuto
 Teuto-brasileiro
 Teutônico
@@ -27793,7 +27771,7 @@ Tia-avó
 Tiara
 Tibetano
 Tíbia
-Tica o
+Tição
 Ticar
 Tico-tico
 Tei-break
@@ -27894,7 +27872,7 @@ Titia
 Titica
 Tititi
 Titubeação
-Titube amento
+Titubeamento
 Titubear
 Titubeio
 Titulação
@@ -27918,7 +27896,7 @@ Tocaia
 Tocaiar
 Tocante
 Tocar
-Tocaria no
+Tocariano
 Tocata
 Tocável
 Tocha
@@ -28209,7 +28187,7 @@ Transferir
 Transferível
 Transfiguração
 Transfigurado
-Transfigura mento
+Transfiguramento
 Transfigurar
 Transfinito
 Transformação
@@ -28280,7 +28258,7 @@ Transtornar
 Transtorno
 Transubstanciação
 Transubstanciar
-Trans uraniano
+Transuraniano
 Transversal
 Transversalmente
 Transviar
@@ -28465,7 +28443,7 @@ Trinques
 Trinta
 Trintão
 Trio
-Tri oxido
+Trióxido
 Tripa
 Tripanossoma
 Tripas
@@ -29326,7 +29304,7 @@ Vico
 Viçoso
 Vicunha
 Vida
-Vida-me dia
+Vida-média
 Vidão
 Videira
 Vidência
@@ -29445,9 +29423,9 @@ Virilha
 Virilidade
 Virilidade
 Virologia
-Viro logico
+Virológico
 Virologista
-Viro logo
+Virólogo
 Virose
 Virótico
 Virtual
@@ -29626,7 +29604,7 @@ Vulcanismo
 Vulcanização
 Vulcanizar
 Vulcanologia
-Vulcano logo
+Vulcanólogo
 Vulcão
 Vulgar
 Vulgaridade

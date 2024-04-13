@@ -19,6 +19,18 @@ var pum = []
 for(let i = 0; i < punsAmount; i++){
     pum.push(new Audio(`./assets/audio/pum/${i}.wav`))
 }
+var piadas = []
+fetch("./assets/herherher.txt").then(x => x.text()).then(x => {
+    piadas = x.split("\r\n")
+  }
+)
+var papiadas = [
+    "NÃO INSISTA HUMANO!",
+    "EU, O GRRANDE PAPYRUS, NÃO ME REBAIXAREI A ESTE NÍVEL!",
+    "HUMANO, CALE A BOCA!",
+    "QUER PIADAS? CHAME O SANS, EU TÔ FORA"
+]
+
 
 function Sans(nome, sprite, animação, song, fala) {
     this.nome = nome
@@ -63,7 +75,7 @@ const papyrus = new Sans(
 let select = new Audio('./assets/audio/select.mp3')
 let click = new Audio('./assets/audio/click.mp3')
 let locked = new Audio('./assets/audio/locked.mp3')
-volumeGlobal = 0.5
+volumeGlobal = 0.4
 let atual, padrão = sands;
 let sanses = document.getElementById('sans');
 var spare = document.getElementById('spare')
@@ -94,6 +106,7 @@ papyrus.song.volume = sands.song.volume = errorSans.song.volume = fortenaite.son
 
 let txt;
 let para = falando = false;
+var papyrusPiada = 0;
 let onTouchDevice = ('ontouchstart' in document.documentElement);
 atual = padrão
 addEventListener("resize", screenSize);
@@ -130,6 +143,10 @@ const itens = [
     {
         img: './assets/imagens/xgaster.png',
         id: "xgaster"
+    },
+    {
+        img: "./assets/imagens/osso.png",
+        id: "osso"
     }
 ]
 
@@ -141,29 +158,36 @@ cx.addEventListener('keydown', async (verif) => {
     if (Math.floor(Math.random() * 10) == 0) {
         atual = fortenaite
     }
-    console.log(verif.key)
+   
     //Isso é um RegEx, onde ele procura por letras de A-Z em maiúsculo e minúsculo, e caracteres de "! à @" em unicode, o que inclui os números
     if (verif.key == "Shift" || verif.key == "Control") return;
     if (verif.key != "Enter") tocarMúsica(atual)
 
     //Cancela a fala caso ele já esteja falando
     if (verif.key == "Enter") {
-        falar(cx.value, atual)
+        falar(cx.value, atual, false)
     }
 })
 
 let tempo = 0;
 let looping = false;
+let bufferFonte = false;
 let novoTexto
 
-async function falar(txt, sans) {
+async function falar(txt, sans, piada) {
+    if (bufferFonte && sans.nome == "sans") alternarFonte('Comic Sans')
     if (falando == true) {
         novoTexto = txt
         para = true;
         return;
     }
+    if (atual.nome == "papyrus") {
+        if (piada == false) papyrusPiada = 0
+        else papyrusPiada++ 
+    }
     if (Math.floor(Math.random()*20) == 0) txt = "joga na blaze ae"
     if (txt.toLowerCase() == "espaguete") {
+        txt = "ESPAGUETE!!!"
         papiro()
         sans = papyrus
     }
@@ -171,18 +195,23 @@ async function falar(txt, sans) {
     //Limpa o campo de fala
     final.innerHTML = ""
     falando = true;
+    let playready = true;
+    let voz = sans.fala ? sans.fala : padrão.fala  
+    if (sans.nome == "papyrus") {
+        txt = txt.toUpperCase()
+        txt += "!!"
+    }
     for (let i = 0; i < txt.length; i++) {
         //Cancela caso receba um sinal para parar
         if (para == true) {
             //Reinicia a parte da fala
             falando = para = false
-            falar(novoTexto, sans)
+            falar(novoTexto, sans, piada)
             return;
         }
         //Escreve letra por letra tocando o áudio
         final.innerHTML += `${txt[i]}`
-        let voz = sans.fala ? sans.fala : padrão.fala
-        if (padrão.nome == "error") {
+        if (playready && padrão.nome == "error") {
             if (txt[i] !== " ") {
                 let clone = voz.cloneNode()
                 let pbr = Math.round(Math.random() * 10 + 5) / 10
@@ -190,18 +219,27 @@ async function falar(txt, sans) {
                 clone.playbackRate = pbr;
                 clone.volume = volumeGlobal;
                 clone.play();
+                playready = false
             }
         } else {
             //Não fala nos espaços
-            if (/^[A-Z-a-z!-@À-Üá-ü]*$/.test(txt[i])) {
+            if (playready && /^[A-Z-a-z!-@À-Üá-ü]*$/.test(txt[i])) {
+
                 const clone = voz.cloneNode()
+                clone.volume = volumeGlobal; 
                 clone.play();
+                playready = false
+            } else {
+                playready = true
             }
         }
         //Não pausa nos espaços
-        if (txt[i] != " ") {
-            await sleep(60)
-        }
+        //if (!piada && txt[i] != " ") {
+        //    console.log("")
+            await sleep(40)
+        //} else {
+        //    await sleep(60)
+        //} 
     }
     falando = false;
 }
@@ -220,6 +258,7 @@ async function tocarMúsica(sans) {
 
 async function loopMúsica(sans) {
     //Sinaliza que um looping começou, decrementa em tempo a cada 0.1 segundos
+    sans.song.volume = volumeGlobal
     looping = true;
     while (tempo > 0) {
         tempo--;
@@ -254,7 +293,7 @@ function alternarError() {
         sanses.src = sands.sprite
     }
     else if (padrão.nome == "papyrus") {
-        falar("não", "papyrus")
+        falar("não", "papyrus", false)
         return;
     }
     window.alert("What")
@@ -262,7 +301,6 @@ function alternarError() {
 }
 
 function papiro() {
-    if (atual == papyrus) return;
     sanses.src = papyrus.sprite
     padrão = papyrus;
     tempo = 0
@@ -270,21 +308,45 @@ function papiro() {
 }
 
 overwrite = overloop = false
-function interact(id) {
-    if (id == "pum") {
-        sanses.src = sands.sprite
-        pum[Math.floor(Math.random()*punsAmount)].play()
-        padrão = sands;
-        alternarFonte('Comic Sans')
-    }
-    if (id == "lol"){
-        falar("aí não cara pelo amor de deus por favor né? vamo para já chega deu já mano saturou por favor", atual)
-    }
-    if (id == "xgaster"){
-        overwrite ? overwrite = false : overwrite = true
-        if (overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/overwrite.png')"
-        if (!overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/act.png')"
-    }
+async function interact(id) {
+    switch(id){
+        case "pum":
+            sanses.src = sands.sprite
+            pum[Math.floor(Math.random()*punsAmount)].play()
+            padrão = sands;
+            atual = sands;
+            alternarFonte('Comic Sans')
+            break;
+
+        case "lol":
+            falar("aí não cara pelo amor de deus por favor né? vamo para já chega deu já mano saturou por favor", atual, false)
+            break;
+
+        case "xgaster":
+            overwrite ? overwrite = false : overwrite = true
+            if (overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/overwrite.png')"
+            if (!overwrite) botões[1].style.backgroundImage = "url('./assets/imagens/botoes/act.png')"
+            break;
+
+        case "osso":
+            let escolha = piadas[Math.floor(Math.random()*piadas.length)]
+            console.log(escolha)
+            console.log(`${atual}, ${papyrusPiada}`)
+            if (atual.nome == "error") falar("sua vida.", atual, false) 
+            if (atual.nome == "sans") falar(escolha, atual, true)
+            if (atual.nome == "papyrus") {
+                falar(papiadas[papyrusPiada], atual, true)
+                if (papyrusPiada >= 4) {
+                    sanses.src = sands.sprite
+                    padrão = sands;
+                    atual = sands;
+                    bufferFonte = true
+                    papyrusPiada = 0
+                } 
+            }
+            break;
+        }
+   
     section.removeChild(tblItens)
     box[0].style.display = ""
     box[1].style.display = ""
@@ -344,7 +406,7 @@ function mclick(x) {
         let clone = click.cloneNode()
         clone.volume = volumeGlobal
         clone.play();
-        falar(conteúdo[Math.floor(Math.random() * conteúdo.length)], atual)
+        falar(conteúdo[Math.floor(Math.random() * conteúdo.length)], atual, false)
     }
 }
 
