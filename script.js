@@ -21,7 +21,8 @@ for(let i = 0; i < punsAmount; i++){
 }
 var piadas = []
 fetch("./assets/herherher.txt").then(x => x.text()).then(x => {
-    piadas = x.split("\r\n")
+    piadas = x.split("\r")
+    piadas = piadas.split("\n")
   }
 )
 var papiadas = [
