@@ -2,7 +2,7 @@
 
 Já quis por algum motivo simular o som de alguma fala do Sans durante sua batalha? Sim? Primeiro: por quê? Segundo: sua resposta está aqui ✨
 
-![App Screenshot](https://media.discordapp.net/attachments/488819669285994496/1088608389480861696/image.png)
+![App Screenshot](/assets/imagens/screenshot.png)
 
 
 ## O que ele faz?
