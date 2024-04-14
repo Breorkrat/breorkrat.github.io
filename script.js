@@ -33,11 +33,11 @@ var papiadas = [
 
 
 function Sans(nome, sprite, animação, song, fala) {
-    this.nome = nome
-    this.sprite = sprite
-    this.animação = animação
-    this.song = new Audio(song)
-    this.fala = new Audio(fala)
+    if (nome) this.nome = nome
+    if (sprite) this.sprite = sprite
+    if (animação) this.animação = animação
+    if (song) this.song = new Audio(song)
+    if (fala) this.fala = new Audio(fala)
 }
 
 const sands = new Sans(
@@ -53,7 +53,7 @@ const fortenaite = new Sans(
     null,
     "./assets/imagens/fort/moves.webp",
     "./assets/audio/default.mp3",
-    "./assets/audio/er.mp3"
+    null
 )
 
 const errorSans = new Sans(
@@ -196,6 +196,7 @@ async function falar(txt, sans, piada) {
     final.innerHTML = ""
     falando = true;
     let playready = true;
+    console.log(sans.fala ? sans.fala : padrão.fala) 
     let voz = sans.fala ? sans.fala : padrão.fala  
     if (sans.nome == "papyrus") {
         txt = txt.toUpperCase()
