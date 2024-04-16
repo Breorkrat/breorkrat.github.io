@@ -27,18 +27,27 @@ fetch("./assets/herherher.txt").then(x => x.text()).then(x => {
 var papiadas = [
     "NÃO INSISTA HUMANO!",
     "EU, O GRRANDE PAPYRUS, NÃO ME REBAIXAREI A ESTE NÍVEL!",
-    "HUMANO, CALE A BOCA!",
+    "HUMANO, CALE-SE",
     "QUER PIADAS? CHAME O SANS, EU TÔ FORA"
 ]
 
-
-function Sans(nome, sprite, animação, song, fala, ícone) {
+function Sans(nome, sprite, animação, song, fala, ícone, fonte) {
     if (nome) this.nome = nome
     if (sprite) this.sprite = sprite
     if (animação) this.animação = animação
     if (song) this.song = new Audio(song)
     if (fala) this.fala = new Audio(fala)
     if (ícone) this.ícone = ícone
+    if (fonte) this.fonte = fonte
+    this.Main = function(preservarFonte) {
+        tempo = 0
+        padrão = this
+        sanses.src = this.sprite
+        ícone.href = this.ícone
+        título.innerText = this.nome + "."
+        if (!preservarFonte) final.style.fontFamily = fonte
+        sanses.src = this.sprite
+    }
 }
 
 const sands = new Sans(
@@ -48,6 +57,7 @@ const sands = new Sans(
     "./assets/audio/song.mp3",
     "./assets/audio/er.mp3",
     "./assets/imagens/icons/sans.png",
+    "Comic Sans"
 )
 
 const fortenaite = new Sans(
@@ -57,6 +67,7 @@ const fortenaite = new Sans(
     "./assets/audio/default.mp3",
     null,
     null,
+    null
 )
 
 const errorSans = new Sans(
@@ -66,6 +77,7 @@ const errorSans = new Sans(
     "./assets/audio/errorlovania.mp3",
     "./assets/audio/er.mp3",
     "./assets/imagens/icons/error.png",
+    "Comic Sans"
 )
 
 const papyrus = new Sans(
@@ -75,13 +87,14 @@ const papyrus = new Sans(
     "./assets/audio/bonestrousle.mp3",
     "./assets/audio/papyrus.mp3",
     "./assets/imagens/icons/papyrus.png",
+    "Papyrus",
 )
 
 let select = new Audio('./assets/audio/select.mp3')
 let click = new Audio('./assets/audio/click.mp3')
 let locked = new Audio('./assets/audio/locked.mp3')
 volumeGlobal = 0.4
-let atual, padrão = sands;
+let atual = padrão = sands;
 let sanses = document.getElementById('sans');
 var spare = document.getElementById('spare')
 var act = document.getElementById('act')
@@ -116,7 +129,6 @@ let txt;
 let para = falando = escolhendoNome = false;
 var papyrusPiada = 0;
 let onTouchDevice = ('ontouchstart' in document.documentElement);
-atual = padrão
 addEventListener("resize", screenSize);
 screenSize()
 
@@ -133,7 +145,13 @@ window.addEventListener('keydown', async (tecla) => {
         input.shift()
     }
     if (input.toString() == code.toString()) {
-        alternarError()
+        if (padrão == papyrus) {
+            falar("não", padrão)
+            return;
+        }
+        if (padrão != sands) return;
+        errorSans.Main()
+        window.alert("what")
     }
 })
 
@@ -188,7 +206,7 @@ cx.addEventListener('keydown', async (verif) => {
     if (verif.key == "Enter") {
         if (escolhendoNome) {
             if (cx.value.toLowerCase() == "sans") {
-                falar("nope", sands, false)
+                falar("nope", sands)
                 await sleep(10)
                 cx.value = ""
                 return;
@@ -213,7 +231,7 @@ cx.addEventListener('keydown', async (verif) => {
             cx.removeAttribute('maxLength')
             return
         }
-        falar(cx.value, atual, false)
+        falar(cx.value, padrão)
     }
 })
 
@@ -223,23 +241,22 @@ let bufferFonte = false;
 let novoTexto
 
 async function falar(txt, sans, piada) {
-    if (bufferFonte && sans.nome == "sans") alternarFonte('Comic Sans')
+    if (bufferFonte && sans.nome == "sans") final.style.fontFamily = 'Comic Sans'
     if (falando == true) {
         novoTexto = txt
         para = true;
         return;
     }
-    if (atual.nome == "papyrus") {
-        if (piada == false) papyrusPiada = 0
+    if (padrão.nome == "papyrus") {
+        if (!piada) papyrusPiada = 0
         else papyrusPiada++ 
     }
     if (Math.floor(Math.random()*20) == 0) txt = "joga na blaze ae"
     if (txt.toLowerCase() == "espaguete") {
         txt = "ESPAGUETE!!!"
-        papiro()
+        papyrus.Main()
         sans = papyrus
     }
-    atual = padrão
     //Limpa o campo de fala
     final.innerHTML = ""
     falando = true;
@@ -280,14 +297,8 @@ async function falar(txt, sans, piada) {
             } else {
                 playready = true
             }
-        }
-        //Não pausa nos espaços
-        //if (!piada && txt[i] != " ") {
-        //    console.log("")
+        } 
             await sleep(40)
-        //} else {
-        //    await sleep(60)
-        //} 
     }
     falando = false;
 }
@@ -330,54 +341,16 @@ function screenSize() {
     currSize = window.innerWidth
 }
 
-function alternarError() {
-    tempo = 0
-    if (padrão.nome == "sans") {
-        padrão = errorSans
-        sanses.src = errorSans.sprite
-        ícone.href = errorSans.ícone
-        título.innerText = errorSans.nome + "."
-    }
-
-    else if (padrão.nome == "error") {
-        padrão = sands
-        sanses.src = sands.sprite
-        ícone.href = sands.ícone
-        título.innerText = sands.nome + "."
-    }
-
-    else if (padrão.nome == "papyrus") {
-        falar("não", "papyrus", false)
-        return;
-    }
-    window.alert("What")
-    sanses.src = padrão.sprite
-}
-
-function papiro() {
-    sanses.src = papyrus.sprite
-    padrão = papyrus;
-    tempo = 0
-    alternarFonte('Papyrus')
-    ícone.href = papyrus.ícone
-    título.innerText = papyrus.nome + "."
-}
-
 overwrite = overloop = false
 async function interact(id) {
     switch(id){
         case "pum":
-            sanses.src = sands.sprite
             pum[Math.floor(Math.random()*punsAmount)].play()
-            padrão = sands;
-            atual = sands;
-            alternarFonte('Comic Sans')
-            título.innerText = sands.nome + "."
-            ícone.href = sands.ícone
+            sands.Main()
             break;
 
         case "lol":
-            falar("aí não cara pelo amor de deus por favor né? vamo para já chega deu já mano saturou por favor", atual, false)
+            falar("aí não cara pelo amor de deus por favor né? vamo para já chega deu já mano saturou por favor", padrão)
             break;
 
         case "xgaster":
@@ -388,18 +361,13 @@ async function interact(id) {
 
         case "osso":
             let escolha = piadas[Math.floor(Math.random()*piadas.length)]
-            if (atual.nome == "error") falar("sua vida.", atual, false) 
-            if (atual.nome == "sans") falar(escolha, atual, true)
-            if (atual.nome == "papyrus") {
-                falar(papiadas[papyrusPiada], atual, true)
+            if (padrão.nome == "error") falar("sua vida.", padrão) 
+            if (padrão.nome == "sans") falar(escolha, padrão, true)
+            if (padrão.nome == "papyrus") {
+                falar(papiadas[papyrusPiada], padrão, true)
                 if (papyrusPiada >= 4) {
-                    sanses.src = sands.sprite
-                    padrão = sands;
-                    atual = sands;
+                    sands.Main(true)
                     bufferFonte = true
-                    papyrusPiada = 0
-                    ícone.href = sands.ícone    
-                    título.innerText = sands.nome + "."
                 } 
             }
             break;
@@ -415,10 +383,6 @@ async function interact(id) {
     box[0].style.display = ""
     box[1].style.display = ""
     itensUI = false
-}
-
-function alternarFonte(fonte){
-    final.style.fontFamily = fonte
 }
 
 let itensUI = false
@@ -437,7 +401,7 @@ function mclick(x) {
         } 
         if (onTouchDevice) {
             click.play();
-            alternarError()
+            errorSans.Main()
         }
         else {
             let clone = locked.cloneNode()
@@ -470,7 +434,7 @@ function mclick(x) {
         let clone = click.cloneNode()
         clone.volume = volumeGlobal
         clone.play();
-        falar(conteúdo[Math.floor(Math.random() * conteúdo.length)], atual, false)
+        falar(conteúdo[Math.floor(Math.random() * conteúdo.length)], padrão)
     }
 }
 
