@@ -32,12 +32,13 @@ var papiadas = [
 ]
 
 
-function Sans(nome, sprite, animação, song, fala) {
+function Sans(nome, sprite, animação, song, fala, ícone) {
     if (nome) this.nome = nome
     if (sprite) this.sprite = sprite
     if (animação) this.animação = animação
     if (song) this.song = new Audio(song)
     if (fala) this.fala = new Audio(fala)
+    if (ícone) this.ícone = ícone
 }
 
 const sands = new Sans(
@@ -46,6 +47,7 @@ const sands = new Sans(
     "./assets/imagens/sans/moves.webp",
     "./assets/audio/song.mp3",
     "./assets/audio/er.mp3",
+    "./assets/imagens/icons/sans.png",
 )
 
 const fortenaite = new Sans(
@@ -53,7 +55,8 @@ const fortenaite = new Sans(
     null,
     "./assets/imagens/fort/moves.webp",
     "./assets/audio/default.mp3",
-    null
+    null,
+    null,
 )
 
 const errorSans = new Sans(
@@ -61,7 +64,8 @@ const errorSans = new Sans(
     "./assets/imagens/error/sprite.png",
     "./assets/imagens/error/moves.webp",
     "./assets/audio/errorlovania.mp3",
-    "./assets/audio/er.mp3"
+    "./assets/audio/er.mp3",
+    "./assets/imagens/icons/error.png",
 )
 
 const papyrus = new Sans(
@@ -69,7 +73,8 @@ const papyrus = new Sans(
     "./assets/imagens/papyrus/sprite.png",
     "./assets/imagens/papyrus/moves.webp",
     "./assets/audio/bonestrousle.mp3",
-    "./assets/audio/papyrus.mp3"
+    "./assets/audio/papyrus.mp3",
+    "./assets/imagens/icons/papyrus.png",
 )
 
 let select = new Audio('./assets/audio/select.mp3')
@@ -86,6 +91,9 @@ var cx = document.querySelector('#cx')
 var cushion = document.querySelector('#cushion')
 var section = document.querySelector('#section')
 var box = document.querySelectorAll('.box')
+var ícone = document.querySelector('#ícone')
+var título = document.querySelector('#title')
+var nome = document.querySelector('#nome')
 let code = [
     "ArrowUp",
     "ArrowUp",
@@ -105,7 +113,7 @@ papyrus.song.volume = sands.song.volume = errorSans.song.volume = fortenaite.son
 
 
 let txt;
-let para = falando = false;
+let para = falando = escolhendoNome = false;
 var papyrusPiada = 0;
 let onTouchDevice = ('ontouchstart' in document.documentElement);
 atual = padrão
@@ -147,7 +155,20 @@ const itens = [
     {
         img: "./assets/imagens/osso.png",
         id: "osso"
+    },
+    {
+        img: "./assets/imagens/you.png",
+        id: "name"
     }
+]
+const forbidden = [
+    "alphys",
+    "asgore",
+    "asriel",
+    "flowey",
+    "toriel",
+    "undyne",
+    "papyrus"
 ]
 
 const tblItens = document.createElement("table");
@@ -155,16 +176,43 @@ criarTabela()
 
 cx.addEventListener('keydown', async (verif) => {
     atual = padrão
-    if (Math.floor(Math.random() * 10) == 0) {
+    if (!escolhendoNome && Math.floor(Math.random() * 10) == 0) {
         atual = fortenaite
     }
    
     //Isso é um RegEx, onde ele procura por letras de A-Z em maiúsculo e minúsculo, e caracteres de "! à @" em unicode, o que inclui os números
     if (verif.key == "Shift" || verif.key == "Control") return;
-    if (verif.key != "Enter") tocarMúsica(atual)
+    if (verif.key != "Enter" && !escolhendoNome) tocarMúsica(atual)
 
     //Cancela a fala caso ele já esteja falando
     if (verif.key == "Enter") {
+        if (escolhendoNome) {
+            if (cx.value.toLowerCase() == "sans") {
+                falar("nope", sands, false)
+                await sleep(10)
+                cx.value = ""
+                return;
+            }
+
+            if (forbidden.includes(cx.value.toLowerCase())) {
+                await sleep(10)
+                cx.value = ""
+                cx.placeholder = "Escolha SEU nome"
+                return;
+            }
+
+            if (cx.value.toLowerCase() == "gaster") {
+                location.reload()
+                return;
+            }
+            nome.innerText = cx.value
+            escolhendoNome = false
+            await sleep(5)
+            cx.value = ""
+            cx.placeholder = "Texto a ser escrito"
+            cx.removeAttribute('maxLength')
+            return
+        }
         falar(cx.value, atual, false)
     }
 })
@@ -196,7 +244,6 @@ async function falar(txt, sans, piada) {
     final.innerHTML = ""
     falando = true;
     let playready = true;
-    console.log(sans.fala ? sans.fala : padrão.fala) 
     let voz = sans.fala ? sans.fala : padrão.fala  
     if (sans.nome == "papyrus") {
         txt = txt.toUpperCase()
@@ -288,11 +335,17 @@ function alternarError() {
     if (padrão.nome == "sans") {
         padrão = errorSans
         sanses.src = errorSans.sprite
+        ícone.href = errorSans.ícone
+        título.innerText = errorSans.nome + "."
     }
+
     else if (padrão.nome == "error") {
         padrão = sands
         sanses.src = sands.sprite
+        ícone.href = sands.ícone
+        título.innerText = sands.nome + "."
     }
+
     else if (padrão.nome == "papyrus") {
         falar("não", "papyrus", false)
         return;
@@ -306,6 +359,8 @@ function papiro() {
     padrão = papyrus;
     tempo = 0
     alternarFonte('Papyrus')
+    ícone.href = papyrus.ícone
+    título.innerText = papyrus.nome + "."
 }
 
 overwrite = overloop = false
@@ -317,6 +372,8 @@ async function interact(id) {
             padrão = sands;
             atual = sands;
             alternarFonte('Comic Sans')
+            título.innerText = sands.nome + "."
+            ícone.href = sands.ícone
             break;
 
         case "lol":
@@ -341,9 +398,17 @@ async function interact(id) {
                     atual = sands;
                     bufferFonte = true
                     papyrusPiada = 0
+                    ícone.href = sands.ícone    
+                    título.innerText = sands.nome + "."
                 } 
             }
             break;
+
+        case "name":
+            cx.placeholder = "Escolha seu nome"
+            escolhendoNome = true
+            cx.maxLength = "6"
+            cx.value = ""
         }
    
     section.removeChild(tblItens)
@@ -476,6 +541,7 @@ function criarTabela(){
             }
             cellImage.style.display = "block"
             cellImage.style.width = "100%"
+            cellImage.style.textAlign = "center"
     
             cell.appendChild(cellImage);
             row.appendChild(cell);

@@ -93,8 +93,10 @@ header {
 }
 
 .hp {
-    text-align: center;
-    margin-top: 30px;
+    width: 380px;
+    position: relative;
+    margin-left: 50%;
+    left: -160px;
     user-select: none;
 }
 
@@ -164,4 +166,14 @@ td {
     padding: 5px;
     height: 10px;
     width: 100px;
+}
+
+#nome {
+    width: 150px;
+    position: relative;
+    top: 28px;
+    margin-left: 50%;
+    left: -285px;
+    color: white;
+    font-family: 'Determination';
 }
