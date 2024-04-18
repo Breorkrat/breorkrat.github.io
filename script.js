@@ -31,19 +31,19 @@ var papiadas = [
     "QUER PIADAS? CHAME O SANS, EU TÔ FORA"
 ]
 
-function Sans(nome, sprite, animação, song, fala, ícone, fonte) {
+function Sans(nome, sprite, animação, song, fala, íco, fonte) {
     if (nome) this.nome = nome
     if (sprite) this.sprite = sprite
     if (animação) this.animação = animação
     if (song) this.song = new Audio(song)
     if (fala) this.fala = new Audio(fala)
-    if (ícone) this.ícone = ícone
+    if (íco) this.íco = íco
     if (fonte) this.fonte = fonte
     this.Main = function(preservarFonte) {
         tempo = 0
         padrão = this
         sanses.src = this.sprite
-        ícone.href = this.ícone
+        ícone.href = this.íco
         título.innerText = this.nome + "."
         if (!preservarFonte) final.style.fontFamily = fonte
         sanses.src = this.sprite
