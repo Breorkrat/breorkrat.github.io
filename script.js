@@ -395,10 +395,18 @@ async function interact(id) {
             break;
         
         case "vroom":
+            interactable = false
+            falar("Prepare-se para digitar as palavras!", padrão)
+            await sleep(2500)
+            falar("3!", padrão)
+            await sleep(1000)
+            falar("2!", padrão)
+            await sleep(1000)
+            falar("1!", padrão)
+            await sleep(1000)
             cx.focus()
             tempo = 9999999
             tocarMúsica(padrão, true)
-            interactable = false
             let score = 0
             cx.value = ""
             do {
@@ -430,6 +438,12 @@ async function interact(id) {
 
 let itensUI = false
 function mclick(x) {
+    if (!interactable) {
+        let clone = locked.cloneNode()
+        clone.volume = volumeGlobal
+        clone.play()
+        return;
+    }
     if (x.id == 'spare') {
         let clone = click.cloneNode()
         clone.volume = volumeGlobal
