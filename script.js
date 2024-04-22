@@ -395,6 +395,7 @@ async function interact(id) {
             break;
         
         case "vroom":
+            cx.focus()
             tempo = 9999999
             tocarMúsica(padrão, true)
             interactable = false
@@ -407,7 +408,7 @@ async function interact(id) {
                 for (let time = 100; time >= 0; time--){
                     vida.innerText = String(Math.ceil(time/100*92))
                     hp.style.width = String(time) + 'px'
-                    await sleep(20 * (0.97 ** score) + (0.8 * palavra.length))
+                    await sleep(25 * (0.98 ** score) + (0.8 * palavra.length))
                 }
                 if (cx.value.toLowerCase().trim() == palavra.toLowerCase().trim()){
                     click.play()
