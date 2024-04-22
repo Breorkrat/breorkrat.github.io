@@ -92,12 +92,32 @@ header {
     scrollbar-highlight-color: transparent;
 }
 
-.hp {
-    width: 380px;
+#hud {
     position: relative;
     margin-left: 50%;
-    left: -160px;
-    user-select: none;
+    left: -190px;
+    height: 30px;
+    width: 400px;
+    color:white;
+    font-family: 'Determination';
+}
+
+.hp  {
+    position: relative;
+    background-color:rgb(133, 133, 133);
+    border-radius: 0px;
+    width: 100px;
+    height: 20px;
+    margin-right: 50%;
+    left: 115px;
+    top: -24px;
+}
+#max {
+    background-color: rgb(255, 0, 0);
+}
+#hp {
+    background-color: rgb(255, 255, 0);
+    top: -44px;
 }
 
 .botões {

@@ -48,6 +48,7 @@ function Sans(nome, sprite, animação, song, fala, íco, fonte) {
         if (!preservarFonte) final.style.fontFamily = fonte
         sanses.src = this.sprite
     }
+    this.song.loop = true
 }
 
 const sands = new Sans(
@@ -107,6 +108,9 @@ var box = document.querySelectorAll('.box')
 var ícone = document.querySelector('#ícone')
 var título = document.querySelector('#title')
 var nome = document.querySelector('#nome')
+var hp = document.querySelector('#hp')
+var vida = document.querySelector('#vida')
+
 let code = [
     "ArrowUp",
     "ArrowUp",
@@ -155,6 +159,8 @@ window.addEventListener('keydown', async (tecla) => {
     }
 })
 
+let interactable = true
+
 // Tabela de itens
 let tabela = false
 const itens = [
@@ -177,8 +183,13 @@ const itens = [
     {
         img: "./assets/imagens/you.png",
         id: "name"
+    },
+    {
+        img: "./assets/imagens/vroom.png",
+        id: "vroom"
     }
 ]
+
 const forbidden = [
     "alphys",
     "asgore",
@@ -231,7 +242,7 @@ cx.addEventListener('keydown', async (verif) => {
             cx.removeAttribute('maxLength')
             return
         }
-        falar(cx.value, padrão)
+        if (interactable) falar(cx.value, padrão)
     }
 })
 
@@ -240,7 +251,7 @@ let looping = false;
 let bufferFonte = false;
 let novoTexto
 
-async function falar(txt, sans, piada) {
+async function falar(txt, sans, piada, blazenaopegue) {
     if (bufferFonte && sans.nome == "sans") final.style.fontFamily = 'Comic Sans'
     if (falando == true) {
         novoTexto = txt
@@ -251,7 +262,7 @@ async function falar(txt, sans, piada) {
         if (!piada) papyrusPiada = 0
         else papyrusPiada++ 
     }
-    if (Math.floor(Math.random()*20) == 0) txt = "joga na blaze ae"
+    if (!blazenaopegue && Math.floor(Math.random()*20) == 0) txt = "joga na blaze ae"
     if (txt.toLowerCase() == "espaguete") {
         txt = "ESPAGUETE!!!"
         papyrus.Main()
@@ -304,8 +315,8 @@ async function falar(txt, sans, piada) {
 }
 
 var x;
-async function tocarMúsica(sans) {
-    tempo >= 5 ? tempo == 5 : tempo += 3
+async function tocarMúsica(sans, ignorartempo) {
+    if (!ignorartempo) tempo >= 5 ? tempo == 5 : tempo += 3
     if (looping) return;
     //Sansio do fortes
     if (sans.song.paused == true) {
@@ -343,6 +354,10 @@ function screenSize() {
 
 overwrite = overloop = false
 async function interact(id) {
+    section.removeChild(tblItens)
+    box[0].style.display = ""
+    box[1].style.display = ""
+    itensUI = false
     switch(id){
         case "pum":
             pum[Math.floor(Math.random()*punsAmount)].play()
@@ -377,12 +392,39 @@ async function interact(id) {
             escolhendoNome = true
             cx.maxLength = "6"
             cx.value = ""
-        }
-   
-    section.removeChild(tblItens)
-    box[0].style.display = ""
-    box[1].style.display = ""
-    itensUI = false
+            break;
+        
+        case "vroom":
+            tempo = 9999999
+            tocarMúsica(padrão, true)
+            interactable = false
+            let score = 0
+            cx.value = ""
+            do {
+                click.play()
+                let palavra = conteúdo[Math.floor(Math.random()*conteúdo.length)]
+                falar(palavra, padrão, false, true)
+                for (let time = 100; time >= 0; time--){
+                    vida.innerText = String(Math.ceil(time/100*92))
+                    hp.style.width = String(time) + 'px'
+                    await sleep(20 * (0.97 ** score) + (0.8 * palavra.length))
+                }
+                if (cx.value.toLowerCase().trim() == palavra.toLowerCase().trim()){
+                    click.play()
+                    cx.value = ""
+                    score++
+                } else {
+                    vida.innerText = '92'
+                    tempo = 0
+                    locked.play()
+                    hp.style.width = "100px"
+                    falar(`Sua pontuação foi de ${String(score)} ${score==1?'ponto':'pontos'}, a palavra era ${palavra}`, padrão, false, true)
+                    interactable = true
+                    break;
+                }
+            } while (true)
+
+ }
 }
 
 let itensUI = false
