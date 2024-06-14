@@ -46,8 +46,9 @@ function Sans(nome, sprite, animação, song, fala, íco, fonte) {
     if (fonte) this.fonte = fonte
     if (song) this.song.loop = true   
     this.Main = function(preservarFonte) {
+        bufferFonte = preservarFonte
         tempo = 0
-        padrão = this
+        padrão = atual = this
         sanses.src = this.sprite
         ícone.href = this.íco
         título.innerText = this.nome + "."
@@ -237,7 +238,6 @@ const forbidden = [
     "flowey",
     "toriel",
     "undyne",
-    "papyrus"
 ]
 
 const tblItens = document.createElement("table");
@@ -292,7 +292,10 @@ let bufferFonte = false;
 let novoTexto
 
 async function falar(txt, sans, piada, blazenaopegue) {
-    if (bufferFonte && sans.nome == "sans") final.style.fontFamily = 'Comic Sans'
+    if (bufferFonte) {
+        bufferFonte = false
+        final.style.fontFamily = sans.fonte
+    }
     if (falando == true) {
         novoTexto = txt
         para = true;
@@ -426,6 +429,10 @@ async function interact(id) {
         case "vroom":
             interactable = false
             falar("Prepare-se para digitar as palavras!", padrão)
+            if (padrão.nome == "gaster") {
+                final.style.fontFamily = "Comic Sans"
+                console.log("foi")
+            }
             await sleep(2500)
             falar("3!", padrão)
             await sleep(1000)
@@ -459,6 +466,7 @@ async function interact(id) {
                     falar(`Sua pontuação foi de ${String(score)} ${score==1?'ponto':'pontos'}, a palavra era ${palavra}`, padrão, false, true)
                     interactable = true
                     dif.innerText = "LV 19"
+                    final.style.fontFamily = padrão.fonte
                     break;
                 }
             } while (true)
