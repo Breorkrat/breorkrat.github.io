@@ -36,19 +36,39 @@ function Sans(nome, sprite, animação, song, fala, íco, fonte) {
     if (sprite) this.sprite = sprite
     if (animação) this.animação = animação
     if (song) this.song = new Audio(song)
-    if (fala) this.fala = new Audio(fala)
+    if (fala) {
+        this.fala = new Array()
+        for (let i = 0; i < fala.length; i++) {
+            this.fala.push(new Audio(fala[i]))
+        }
+    }
     if (íco) this.íco = íco
     if (fonte) this.fonte = fonte
+    if (song) this.song.loop = true   
     this.Main = function(preservarFonte) {
         tempo = 0
         padrão = this
         sanses.src = this.sprite
         ícone.href = this.íco
         título.innerText = this.nome + "."
-        if (!preservarFonte) final.style.fontFamily = fonte
+        if (!preservarFonte) final.style.fontFamily = this.fonte
         sanses.src = this.sprite
     }
-    this.song.loop = true
+    this.gerarFala = function(){
+        let clone = this.fala[0].cloneNode();
+        switch (nome) {
+            case "error":
+                let pbr = Math.round(Math.random() * 10 + 5) / 10
+                clone.preservesPitch = false;
+                clone.playbackRate = pbr;
+                break;
+            case "gaster":
+                clone = this.fala[Math.floor(Math.random()*8)].cloneNode()
+                break;
+        }
+        clone.volume = volumeGlobal;
+        clone.play();
+    }
 }
 
 const sands = new Sans(
@@ -56,7 +76,7 @@ const sands = new Sans(
     "./assets/imagens/sans/sprite.png",
     "./assets/imagens/sans/moves.webp",
     "./assets/audio/song.mp3",
-    "./assets/audio/er.mp3",
+    ["./assets/audio/er.mp3"],
     "./assets/imagens/icons/sans.png",
     "Comic Sans"
 )
@@ -76,7 +96,7 @@ const errorSans = new Sans(
     "./assets/imagens/error/sprite.png",
     "./assets/imagens/error/moves.webp",
     "./assets/audio/errorlovania.mp3",
-    "./assets/audio/er.mp3",
+    ["./assets/audio/er.mp3"],
     "./assets/imagens/icons/error.png",
     "Comic Sans"
 )
@@ -86,9 +106,28 @@ const papyrus = new Sans(
     "./assets/imagens/papyrus/sprite.png",
     "./assets/imagens/papyrus/moves.webp",
     "./assets/audio/bonestrousle.mp3",
-    "./assets/audio/papyrus.mp3",
+    ["./assets/audio/papyrus.mp3"],
     "./assets/imagens/icons/papyrus.png",
     "Papyrus",
+)
+
+const gaster = new Sans(
+    "gaster",
+    "./assets/imagens/gaster/sprite.png",
+    "./assets/imagens/gaster/moves.webp",
+    "./assets/audio/noise.mp3",
+    [
+        "./assets/audio/gaster/Gaster-01.mp3",
+        "./assets/audio/gaster/Gaster-02.mp3",
+        "./assets/audio/gaster/Gaster-03.mp3",
+        "./assets/audio/gaster/Gaster-04.mp3",
+        "./assets/audio/gaster/Gaster-05.mp3",
+        "./assets/audio/gaster/Gaster-06.mp3",
+        "./assets/audio/gaster/Gaster-07.mp3",
+        "./assets/audio/gaster/Gaster-08.mp3",
+    ],
+    "./assets/imagens/icons/gaster.png",   
+    "Wingdings"
 )
 
 let select = new Audio('./assets/audio/select.mp3')
@@ -110,6 +149,7 @@ var título = document.querySelector('#title')
 var nome = document.querySelector('#nome')
 var hp = document.querySelector('#hp')
 var vida = document.querySelector('#vida')
+var dif = document.querySelector('#dif')
 
 let code = [
     "ArrowUp",
@@ -272,7 +312,6 @@ async function falar(txt, sans, piada, blazenaopegue) {
     final.innerHTML = ""
     falando = true;
     let playready = true;
-    let voz = sans.fala ? sans.fala : padrão.fala  
     if (sans.nome == "papyrus") {
         txt = txt.toUpperCase()
         txt += "!!"
@@ -287,28 +326,18 @@ async function falar(txt, sans, piada, blazenaopegue) {
         }
         //Escreve letra por letra tocando o áudio
         final.innerHTML += `${txt[i]}`
-        if (playready && padrão.nome == "error") {
-            if (txt[i] !== " ") {
-                let clone = voz.cloneNode()
-                let pbr = Math.round(Math.random() * 10 + 5) / 10
-                clone.preservesPitch = false;
-                clone.playbackRate = pbr;
-                clone.volume = volumeGlobal;
-                clone.play();
-                playready = false
+        fala: {
+            if (txt[i] == " ") {
+                playready = true
+                break fala;
             }
-        } else {
-            //Não fala nos espaços
-            if (playready && /^[A-Z-a-z!-@À-Üá-ü]*$/.test(txt[i])) {
-
-                const clone = voz.cloneNode()
-                clone.volume = volumeGlobal; 
-                clone.play();
+            if (playready) {
+                sans.gerarFala()
                 playready = false
             } else {
                 playready = true
             }
-        } 
+        }
             await sleep(40)
     }
     falando = false;
@@ -408,10 +437,10 @@ async function interact(id) {
             tempo = 9999999
             tocarMúsica(padrão, true)
             let score = 0
-            cx.value = ""
             do {
                 click.play()
                 let palavra = conteúdo[Math.floor(Math.random()*conteúdo.length)]
+                dif.innerText = "TP " + String(Math.round(25 * (0.98 ** score) + (0.8 * palavra.length)))
                 falar(palavra, padrão, false, true)
                 for (let time = 100; time >= 0; time--){
                     vida.innerText = String(Math.ceil(time/100*92))
@@ -429,6 +458,7 @@ async function interact(id) {
                     hp.style.width = "100px"
                     falar(`Sua pontuação foi de ${String(score)} ${score==1?'ponto':'pontos'}, a palavra era ${palavra}`, padrão, false, true)
                     interactable = true
+                    dif.innerText = "LV 19"
                     break;
                 }
             } while (true)
@@ -453,6 +483,10 @@ function mclick(x) {
 
     if (x.id == 'act') {
         if (overwrite) {
+            if (padrão.nome == "error") {
+                gaster.Main(true)
+                return;
+            }
             location.href = "./assets/old.html";
             return;
         } 
@@ -502,7 +536,6 @@ function menter(x) {
         return;
     }
     x.style.backgroundImage = `url(./assets/imagens/botoes/a${x.id}.png)`
-    //x.style.backgroundImage = `url('./assets/imagens/botoes/${x.id}2.png`
     select.play()
 }
 
